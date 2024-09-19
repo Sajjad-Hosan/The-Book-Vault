@@ -44,20 +44,9 @@
       "publishing_year": "1910"
     },
     {
-      "title": "Rokto Golap",
-      "author": "Humayun Ahmed",
-      "cover_pic": "https://example.com/rokto_golap.jpg",
-      "genre": "Thriller",
-      "short_description": "A thrilling mystery involving danger and suspense.",
-      "publisher": "Anya Prokash",
-      "price": "350",
-      "rating": 4.6,
-      "publishing_year": "1993"
-    },
-    {
       "title": "Debi",
       "author": "Humayun Ahmed",
-      "cover_pic": "https://example.com/debi.jpg",
+      "cover_pic": "https://i.ibb.co.com/ftrV91s/Debi.jpg",
       "genre": "Thriller",
       "short_description": "A supernatural thriller featuring Misir Ali and a possessed girl.",
       "publisher": "Anya Prokash",
@@ -68,7 +57,7 @@
     {
       "title": "Shuvro",
       "author": "Humayun Ahmed",
-      "cover_pic": "https://example.com/shuvro.jpg",
+      "cover_pic": "https://i.ibb.co.com/n1MH1kw/Shuvro2.jpg",
       "genre": "Fiction",
       "short_description": "A story of an innocent young boy with a philosophical outlook on life.",
       "publisher": "Anya Prokash",
