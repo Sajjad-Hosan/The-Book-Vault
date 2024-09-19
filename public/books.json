@@ -1,0 +1,167 @@
+[
+    {
+      "title": "Pather Panchali",
+      "author": "Bibhutibhushan Bandyopadhyay",
+      "cover_pic": "https://example.com/pather_panchali.jpg",
+      "genre": "Fiction",
+      "short_description": "A moving tale of rural Bengal, depicting the struggles of a family.",
+      "publisher": "Mitro & Ghosh Publishers",
+      "price": "350 BDT",
+      "rating": 4.9,
+      "publishing_date": "01/12/1929"
+    },
+    {
+      "title": "Chokher Bali",
+      "author": "Rabindranath Tagore",
+      "cover_pic": "https://example.com/chokher_bali.jpg",
+      "genre": "Fiction",
+      "short_description": "A story of love, jealousy, and betrayal.",
+      "publisher": "Visva-Bharati",
+      "price": "300 BDT",
+      "rating": 4.8,
+      "publishing_date": "01/06/1903"
+    },
+    {
+      "title": "Shesher Kobita",
+      "author": "Rabindranath Tagore",
+      "cover_pic": "https://example.com/shesher_kobita.jpg",
+      "genre": "Fiction",
+      "short_description": "A poetic love story between a free-spirited woman and a man.",
+      "publisher": "Visva-Bharati",
+      "price": "320 BDT",
+      "rating": 4.7,
+      "publishing_date": "01/08/1929"
+    },
+    {
+      "title": "Gitanjali",
+      "author": "Rabindranath Tagore",
+      "cover_pic": "https://example.com/gitanjali.jpg",
+      "genre": "Poetry",
+      "short_description": "A collection of poems reflecting spiritual and philosophical themes.",
+      "publisher": "Macmillan Publishers",
+      "price": "250 BDT",
+      "rating": 4.9,
+      "publishing_date": "14/08/1910"
+    },
+    {
+      "title": "Rokto Golap",
+      "author": "Humayun Ahmed",
+      "cover_pic": "https://example.com/rokto_golap.jpg",
+      "genre": "Thriller",
+      "short_description": "A thrilling mystery involving danger and suspense.",
+      "publisher": "Anya Prokash",
+      "price": "350 BDT",
+      "rating": 4.6,
+      "publishing_date": "01/03/1993"
+    },
+    {
+      "title": "Debi",
+      "author": "Humayun Ahmed",
+      "cover_pic": "https://example.com/debi.jpg",
+      "genre": "Thriller",
+      "short_description": "A supernatural thriller featuring Misir Ali and a possessed girl.",
+      "publisher": "Anya Prokash",
+      "price": "300 BDT",
+      "rating": 4.8,
+      "publishing_date": "01/09/1985"
+    },
+    {
+      "title": "Shuvro",
+      "author": "Humayun Ahmed",
+      "cover_pic": "https://example.com/shuvro.jpg",
+      "genre": "Fiction",
+      "short_description": "A story of an innocent young boy with a philosophical outlook on life.",
+      "publisher": "Anya Prokash",
+      "price": "250 BDT",
+      "rating": 4.7,
+      "publishing_date": "15/06/1997"
+    },
+    {
+      "title": "Amar Ami",
+      "author": "Humayun Azad",
+      "cover_pic": "https://example.com/amar_ami.jpg",
+      "genre": "Autobiography",
+      "short_description": "An autobiographical book that delves into the author's mind and experiences.",
+      "publisher": "Agamee Prakashani",
+      "price": "350 BDT",
+      "rating": 4.4,
+      "publishing_date": "12/09/2000"
+    },
+    {
+      "title": "Dipu Number Two",
+      "author": "Humayun Ahmed",
+      "cover_pic": "https://example.com/dipu_number_two.jpg",
+      "genre": "Children",
+      "short_description": "The adventures of a boy named Dipu who moves to a new town.",
+      "publisher": "Somoy Prokashon",
+      "price": "200 BDT",
+      "rating": 4.6,
+      "publishing_date": "01/06/1995"
+    },
+    {
+      "title": "Jochona O Jononir Golpo",
+      "author": "Humayun Ahmed",
+      "cover_pic": "https://example.com/jochona_o_jononir_golpo.jpg",
+      "genre": "Historical Fiction",
+      "short_description": "A touching story set during the Bangladesh Liberation War of 1971.",
+      "publisher": "Anya Prokash",
+      "price": "400 BDT",
+      "rating": 4.9,
+      "publishing_date": "25/03/2004"
+    },
+    {
+      "title": "Ma",
+      "author": "Anisul Hoque",
+      "cover_pic": "https://example.com/ma.jpg",
+      "genre": "Historical Fiction",
+      "short_description": "A heart-wrenching story of a mother's love during the Bangladesh Liberation War.",
+      "publisher": "Prothoma Prokashon",
+      "price": "350 BDT",
+      "rating": 4.8,
+      "publishing_date": "15/12/2003"
+    },
+    {
+      "title": "Lila",
+      "author": "Shomoresh Majumdar",
+      "cover_pic": "https://example.com/lila.jpg",
+      "genre": "Fiction",
+      "short_description": "The story of a woman named Lila who defies societal norms.",
+      "publisher": "Mitro & Ghosh Publishers",
+      "price": "320 BDT",
+      "rating": 4.7,
+      "publishing_date": "10/04/1998"
+    },
+    {
+      "title": "Haripada Haribol",
+      "author": "Syed Mujtaba Ali",
+      "cover_pic": "https://example.com/haripada_haribol.jpg",
+      "genre": "Fiction",
+      "short_description": "A humorous take on life and society.",
+      "publisher": "Agamee Prakashani",
+      "price": "280 BDT",
+      "rating": 4.6,
+      "publishing_date": "12/09/1948"
+    },
+    {
+      "title": "Lalsalu",
+      "author": "Syed Waliullah",
+      "cover_pic": "https://example.com/lalsalu.jpg",
+      "genre": "Fiction",
+      "short_description": "A powerful exploration of deception and manipulation in rural Bangladesh.",
+      "publisher": "Agamee Prakashani",
+      "price": "300 BDT",
+      "rating": 4.8,
+      "publishing_date": "01/01/1948"
+    },
+    {
+      "title": "Madhyabartini",
+      "author": "Syed Mujtaba Ali",
+      "cover_pic": "https://example.com/madhyabartini.jpg",
+      "genre": "Fiction",
+      "short_description": "A heartwarming tale of unrequited love and sacrifice.",
+      "publisher": "Agamee Prakashani",
+      "price": "290 BDT",
+      "rating": 4.7,
+      "publishing_date": "05/07/1950"
+    }
+  ]
