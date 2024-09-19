@@ -2,46 +2,46 @@
     {
       "title": "Pather Panchali",
       "author": "Bibhutibhushan Bandyopadhyay",
-      "cover_pic": "https://example.com/pather_panchali.jpg",
+      "cover_pic": "https://i.ibb.co.com/WDMPGwd/Pather-Panchali2.jpg",
       "genre": "Fiction",
       "short_description": "A moving tale of rural Bengal, depicting the struggles of a family.",
       "publisher": "Mitro & Ghosh Publishers",
-      "price": "350 BDT",
+      "price": "350",
       "rating": 4.9,
-      "publishing_date": "01/12/1929"
+      "publishing_year": "1929"
     },
     {
       "title": "Chokher Bali",
       "author": "Rabindranath Tagore",
-      "cover_pic": "https://example.com/chokher_bali.jpg",
+      "cover_pic": "https://i.ibb.co.com/FJXh6f3/Chokher-Bali.jpg",
       "genre": "Fiction",
       "short_description": "A story of love, jealousy, and betrayal.",
       "publisher": "Visva-Bharati",
-      "price": "300 BDT",
+      "price": "300",
       "rating": 4.8,
-      "publishing_date": "01/06/1903"
+      "publishing_year": "1903"
     },
     {
       "title": "Shesher Kobita",
       "author": "Rabindranath Tagore",
-      "cover_pic": "https://example.com/shesher_kobita.jpg",
+      "cover_pic": "https://i.ibb.co.com/RHbkS8F/Shesher-Kobita.jpg",
       "genre": "Fiction",
       "short_description": "A poetic love story between a free-spirited woman and a man.",
       "publisher": "Visva-Bharati",
-      "price": "320 BDT",
+      "price": "320",
       "rating": 4.7,
-      "publishing_date": "01/08/1929"
+      "publishing_year": "1929"
     },
     {
       "title": "Gitanjali",
       "author": "Rabindranath Tagore",
-      "cover_pic": "https://example.com/gitanjali.jpg",
+      "cover_pic": "https://i.ibb.co.com/SfzRv8L/Gitanjali.jpg",
       "genre": "Poetry",
       "short_description": "A collection of poems reflecting spiritual and philosophical themes.",
       "publisher": "Macmillan Publishers",
-      "price": "250 BDT",
+      "price": "250",
       "rating": 4.9,
-      "publishing_date": "14/08/1910"
+      "publishing_year": "1910"
     },
     {
       "title": "Rokto Golap",
@@ -50,9 +50,9 @@
       "genre": "Thriller",
       "short_description": "A thrilling mystery involving danger and suspense.",
       "publisher": "Anya Prokash",
-      "price": "350 BDT",
+      "price": "350",
       "rating": 4.6,
-      "publishing_date": "01/03/1993"
+      "publishing_year": "1993"
     },
     {
       "title": "Debi",
@@ -61,9 +61,9 @@
       "genre": "Thriller",
       "short_description": "A supernatural thriller featuring Misir Ali and a possessed girl.",
       "publisher": "Anya Prokash",
-      "price": "300 BDT",
+      "price": "300",
       "rating": 4.8,
-      "publishing_date": "01/09/1985"
+      "publishing_year": "1985"
     },
     {
       "title": "Shuvro",
@@ -72,9 +72,9 @@
       "genre": "Fiction",
       "short_description": "A story of an innocent young boy with a philosophical outlook on life.",
       "publisher": "Anya Prokash",
-      "price": "250 BDT",
+      "price": "250",
       "rating": 4.7,
-      "publishing_date": "15/06/1997"
+      "publishing_year": "1997"
     },
     {
       "title": "Amar Ami",
@@ -83,20 +83,20 @@
       "genre": "Autobiography",
       "short_description": "An autobiographical book that delves into the author's mind and experiences.",
       "publisher": "Agamee Prakashani",
-      "price": "350 BDT",
+      "price": "350",
       "rating": 4.4,
-      "publishing_date": "12/09/2000"
+      "publishing_year": "2000"
     },
     {
       "title": "Dipu Number Two",
-      "author": "Humayun Ahmed",
+      "author": "Muhammod Jafar Iqbal",
       "cover_pic": "https://example.com/dipu_number_two.jpg",
       "genre": "Children",
       "short_description": "The adventures of a boy named Dipu who moves to a new town.",
       "publisher": "Somoy Prokashon",
-      "price": "200 BDT",
+      "price": "200",
       "rating": 4.6,
-      "publishing_date": "01/06/1995"
+      "publishing_year": "1995"
     },
     {
       "title": "Jochona O Jononir Golpo",
@@ -105,9 +105,9 @@
       "genre": "Historical Fiction",
       "short_description": "A touching story set during the Bangladesh Liberation War of 1971.",
       "publisher": "Anya Prokash",
-      "price": "400 BDT",
+      "price": "400",
       "rating": 4.9,
-      "publishing_date": "25/03/2004"
+      "publishing_year": "2004"
     },
     {
       "title": "Ma",
@@ -116,9 +116,9 @@
       "genre": "Historical Fiction",
       "short_description": "A heart-wrenching story of a mother's love during the Bangladesh Liberation War.",
       "publisher": "Prothoma Prokashon",
-      "price": "350 BDT",
+      "price": "350",
       "rating": 4.8,
-      "publishing_date": "15/12/2003"
+      "publishing_year": "2003"
     },
     {
       "title": "Lila",
@@ -127,9 +127,9 @@
       "genre": "Fiction",
       "short_description": "The story of a woman named Lila who defies societal norms.",
       "publisher": "Mitro & Ghosh Publishers",
-      "price": "320 BDT",
+      "price": "320",
       "rating": 4.7,
-      "publishing_date": "10/04/1998"
+      "publishing_year": "1998"
     },
     {
       "title": "Haripada Haribol",
@@ -138,9 +138,9 @@
       "genre": "Fiction",
       "short_description": "A humorous take on life and society.",
       "publisher": "Agamee Prakashani",
-      "price": "280 BDT",
+      "price": "280",
       "rating": 4.6,
-      "publishing_date": "12/09/1948"
+      "publishing_year": "1948"
     },
     {
       "title": "Lalsalu",
@@ -149,9 +149,9 @@
       "genre": "Fiction",
       "short_description": "A powerful exploration of deception and manipulation in rural Bangladesh.",
       "publisher": "Agamee Prakashani",
-      "price": "300 BDT",
+      "price": "300",
       "rating": 4.8,
-      "publishing_date": "01/01/1948"
+      "publishing_year": "1948"
     },
     {
       "title": "Madhyabartini",
@@ -160,8 +160,8 @@
       "genre": "Fiction",
       "short_description": "A heartwarming tale of unrequited love and sacrifice.",
       "publisher": "Agamee Prakashani",
-      "price": "290 BDT",
+      "price": "290",
       "rating": 4.7,
-      "publishing_date": "05/07/1950"
+      "publishing_year": "1950"
     }
   ]
