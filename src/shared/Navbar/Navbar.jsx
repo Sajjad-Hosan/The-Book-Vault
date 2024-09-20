@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { CiSearch } from "react-icons/ci";
 import { TbCategory2 } from "react-icons/tb";
 import {
   FaBars,
@@ -10,6 +9,8 @@ import {
   FaShoppingCart,
 } from "react-icons/fa";
 import { Link, NavLink } from "react-router-dom";
+import CategoryModal from "../../components/CategoryModal/CategoryModal";
+import { CgSearch } from "react-icons/cg";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false); // State to toggle menu
@@ -20,6 +21,8 @@ const Navbar = () => {
 
   return (
     <>
+      <CategoryModal />
+      {/* --------------------- */}
       <header className="w-full bg-white border-b border-gray-200 relative z-50">
         {/* Top Navigation */}
         <div className="container mx-auto flex items-center justify-between py-2 px-4 md:px-0 text-sm">
@@ -72,14 +75,11 @@ const Navbar = () => {
               <input
                 type="text"
                 placeholder="Search products..."
-                className="flex-grow input input-bordered join-item rounded-l-full"
+                className="flex-grow input input-bordered join-item rounded-l-full pb-1"
               />
-              <div className="join join-item">
-                <select className="join-item btn">
-                  <option value="all">All categories</option>
-                </select>
-                <button className="join-item btn rounded-r-full">
-                  <CiSearch className="text-lg" />
+              <div className="">
+                <button className="btn btn-neutral rounded-r-full">
+                  <CgSearch className="text-lg" /> Search
                 </button>
               </div>
             </div>
@@ -120,7 +120,12 @@ const Navbar = () => {
         <div className="bg-gray-100 py-2 hidden md:block">
           <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-0 space-y-4 md:space-y-0">
             {/* Categories Button */}
-            <button className="btn btn-ghost">
+            <button
+              className="btn btn-ghost"
+              onClick={() =>
+                document.getElementById("category_modal").showModal()
+              }
+            >
               <TbCategory2 className="text-lg" /> <p>Categories</p>
             </button>
 
