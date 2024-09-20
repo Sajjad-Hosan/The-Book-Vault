@@ -1,32 +1,35 @@
+import { useState } from "react";
 import { HiMiniXMark } from "react-icons/hi2";
 
 const CategoryModal = () => {
-  const genres = [
-    "Action",
-    "Adventure",
-    "Activity",
-    "Animals",
-    "Anthologies",
-    "Arts",
-    " Literature",
-    "Cars ",
-    " Trucks",
-    "Classics",
-    "Contemporary",
-    "Cultural",
-    "European",
-    "Foreign Language",
-    "Fiction",
-    "Historical",
-    "Uncategorized",
+  const [genres, setGenres] = useState("action");
+  const [aut, setAut] = useState("arthur gonzalez");
+  const genresArr = [
+    "action",
+    "adventure",
+    "activity",
+    "animals",
+    "anthologies",
+    "arts",
+    " literature",
+    "cars ",
+    " trucks",
+    "classics",
+    "contemporary",
+    "cultural",
+    "european",
+    "foreign language",
+    "fiction",
+    "historical",
+    "uncategorized",
   ];
-  const authors = [
-    { name: "Arthur Gonzalez", count: 1 },
-    { name: "Dana Chambers", count: 1 },
-    { name: "Ernesto Wade", count: 1 },
-    { name: "Karla Newman", count: 2 },
-    { name: "Misty Figueroa", count: 2 },
-    { name: "Suzanne Casey", count: 1 },
+  const authorsArr = [
+    { name: "arthur gonzalez", count: 1 },
+    { name: "dana chambers", count: 1 },
+    { name: "ernesto wade", count: 1 },
+    { name: "karla newman", count: 2 },
+    { name: "misty figueroa", count: 2 },
+    { name: "suzanne casey", count: 1 },
   ];
 
   return (
@@ -45,8 +48,14 @@ const CategoryModal = () => {
             <div className="card border p-5">
               <h1 className="font-semibold">Genres</h1>
               <div className="grid grid-cols-5 gap-5 mt-5">
-                {genres.map((gen, i) => (
-                  <button key={i} className="btn px-8">
+                {genresArr.map((gen, i) => (
+                  <button
+                    key={i}
+                    className={`btn px-8 ${
+                      gen === genres ? "btn-neutral" : "btn-ghost"
+                    }`}
+                    onClick={() => setGenres(gen)}
+                  >
                     {gen}
                   </button>
                 ))}
@@ -55,8 +64,14 @@ const CategoryModal = () => {
             <div className="card border p-5 mt-5">
               <h1 className="font-semibold">Authors</h1>
               <div className="grid grid-cols-3 gap-5 mt-5">
-                {authors.map(({ name, count }, i) => (
-                  <button key={i} className="btn px-8">
+                {authorsArr.map(({ name, count }, i) => (
+                  <button
+                    key={i}
+                    className={`btn px-8 ${
+                      name === aut ? "btn-neutral" : "btn-ghost"
+                    }`}
+                    onClick={() => setAut(name)}
+                  >
                     {name} <span className="semibold">({count})</span>
                   </button>
                 ))}

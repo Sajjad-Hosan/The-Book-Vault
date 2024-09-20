@@ -3,16 +3,13 @@ import Slider from "react-slick"; // Import react-slick slider
 import "slick-carousel/slick/slick.css"; // Slick carousel CSS
 import "slick-carousel/slick/slick-theme.css"; // Slick carousel theme
 import { FaCartShopping } from "react-icons/fa6";
+import image from "../../assets/book3.jpg";
 
 const SliderCard = ({ data }) => {
   return (
     <>
       <div className="w-full max-h-96 relative card overflow-hidden pl-3">
-        <img
-          src="/src/assets/book3.jpg"
-          alt="Slide 3"
-          className="object-cover rounded-lg"
-        />
+        <img src={image} alt="Slide 3" className="object-cover rounded-lg" />
         <div className="absolute bottom-0 left-4 text-left bg-transparent bg-opacity-30 w-full p-2 overflow-hidden">
           <h1 className="text-lg font-semibold text-black mt-2">Book Name</h1>
           <div className="mt-4">
