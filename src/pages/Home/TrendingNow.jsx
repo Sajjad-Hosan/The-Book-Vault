@@ -26,7 +26,7 @@ const PromoCard = () => (
   <div className="flex flex-col justify-center items-center text-center bg-red-50 p-6 rounded-lg shadow-lg">
     <h2 className="text-lg font-bold text-red-600 mb-4">Buy One, Get One 30% off</h2>
     <p className="text-sm text-gray-500 mb-4">
-      This offer is valid at Bookory from October 1, 2022.
+      This offer is valid at Book Vault from October 1, 2024.
     </p>
     <div className="text-4xl font-bold text-red-500 mb-4">30% Off</div>
     <p className="text-sm text-gray-500">Got Questions?</p>
