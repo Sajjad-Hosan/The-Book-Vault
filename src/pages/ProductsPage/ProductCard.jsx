@@ -16,7 +16,7 @@ const ProductCard = ({ book }) => {
                     <p className="py-2 font-bold">
                         {price} BDT
                     </p>
-                    <button className="btn btn-primary">View Details</button>
+                    <button className="px-6 py-2 bg-red-500 text-white rounded-full">View Details</button>
                 </div>
             </div>
         </div>
