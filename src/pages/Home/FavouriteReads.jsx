@@ -23,10 +23,10 @@ const BookCard = ({ book, isSmall }) => (
     </div>
     <div className="text-right">
       <p className={`${isSmall ? 'text-sm' : 'text-lg'} font-bold text-red-600`}>
-        ₹{book.price}
+      ৳{book.price}
       </p>
       {book.originalPrice && (
-        <p className="text-xs line-through text-gray-400">₹{book.originalPrice}</p>
+        <p className="text-xs line-through text-gray-400">৳{book.originalPrice}</p>
       )}
     </div>
   </div>
@@ -48,7 +48,7 @@ const FeaturedBook = ({ book }) => (
       ))}
       {book.rating % 1 !== 0 && <AiOutlineStar className="text-yellow-500 w-4 h-4" />}
     </div>
-    <p className="text-lg font-bold text-red-600">₹{book.price}</p>
+    <p className="text-lg font-bold text-red-600">৳{book.price}</p>
   </div>
 );
 

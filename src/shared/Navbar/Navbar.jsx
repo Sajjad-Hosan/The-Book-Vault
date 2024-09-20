@@ -78,7 +78,7 @@ const Navbar = () => {
         </div>
 
         {/* Bottom Navigation & Contact */}
-        <div className="bg-gray-100 py-2 hidden md:block">
+        <div className="py-2 hidden md:block">
           <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-0 space-y-4 md:space-y-0">
             {/* Categories Button */}
             <button className="bg-red-500 text-white gap-2 px-4 py-2 rounded-lg flex items-center">
