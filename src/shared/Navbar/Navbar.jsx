@@ -67,12 +67,12 @@ const Navbar = () => {
               <FaUser className="text-gray-500 text-lg" />
             </a>
             <a href="/wishlist" className="relative">
-              <FaHeart className="text-gray-500 text-lg" />
-              <span className="absolute top-0 right-0 text-xs text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center">25</span>
+              <FaHeart className="text-gray-500 text-2xl" />
+              <span className="absolute top-3 right-3 text-xs text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center">25</span>
             </a>
             <a href="/cart" className="relative">
-              <FaShoppingCart className="text-gray-500 text-lg" />
-              <span className="absolute top-0 right-0 text-xs text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center">0</span>
+              <FaShoppingCart className="text-gray-500 text-2xl" />
+              <span className="absolute top-3 right-3 text-xs text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center">0</span>
             </a>
           </div>
         </div>
