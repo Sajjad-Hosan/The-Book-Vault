@@ -20,11 +20,11 @@ const SliderComponent = () => {
     <div className="container mx-auto my-8">
       <Slider {...sliderSettings}>
         {/* Slide 1 */}
-        <div className="relative">
+        <div className="relative ">
           <img
             src="/src/assets/book1.jpg"
             alt="Slide 1"
-            className="w-full max-h-96"
+            className="w-full max-h-96 object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">
@@ -38,7 +38,7 @@ const SliderComponent = () => {
           <img
             src="/src/assets/book2.jpg"
             alt="Slide 2"
-            className="w-full max-h-96"
+            className="w-full max-h-96 object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">
@@ -52,7 +52,7 @@ const SliderComponent = () => {
           <img
             src="/src/assets/book3.jpg"
             alt="Slide 3"
-            className="w-full max-h-96"
+            className="w-full max-h-96 object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center">
             <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">

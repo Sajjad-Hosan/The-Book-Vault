@@ -1,12 +1,14 @@
 import SliderComponent from "./SliderComponent";
+import TopSellingVendors from "./TopSellingVendors";
 
 
 
 const Home = () => {
   return (
     <div>
+      <p className=" my-8 text-center">Home page</p>
       <SliderComponent></SliderComponent>
-      <p className="text-center">Home page</p>
+      <TopSellingVendors></TopSellingVendors>
     </div>
   );
 };
