@@ -8,7 +8,7 @@ const Home = () => {
       </Link>
       <h1 className="text-5xl font-semibold font-mono">This is App Page</h1>
       <p className="font-semibold text-red-500">
-        Jubayer Khan vai you can work
+        testing my git hub connection 
       </p>
     </div>
   );
