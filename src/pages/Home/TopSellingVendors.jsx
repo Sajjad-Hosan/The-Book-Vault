@@ -44,7 +44,7 @@ const TopSellingVendors = () => {
                 {book.rating % 1 !== 0 && <FaStarHalfAlt className="text-yellow-500" />}
               </div>
 
-              <p className="text-gray-500">Price: ${book.price}</p>
+              <p className="text-gray-500">Price: ৳{book.price}</p>
             </div>
           </div>
         ))}
