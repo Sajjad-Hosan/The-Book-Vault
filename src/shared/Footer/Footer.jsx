@@ -38,7 +38,7 @@ const Footer = () => {
           <p className="text-gray-600">Monday – Friday: 9:00-20:00<br />
             Saturday: 11:00 – 15:00
           </p>
-          <p className="text-gray-600">contact@example.com</p>
+          <p className="text-gray-600">contact@devdynamos.com</p>
         </div>
 
         {/* Explore Links */}
