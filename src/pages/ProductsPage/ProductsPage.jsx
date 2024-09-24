@@ -7,7 +7,7 @@ const ProductsPage = () => {
     const [books, setBooks] = useState([]);
     useEffect(() => {
         const booksData = async () => {
-            const response = await fetch('/books.json');
+            const response = await fetch('http://localhost:5000/allbooks');
             const data = await response.json();
             setBooks(data);
         }
