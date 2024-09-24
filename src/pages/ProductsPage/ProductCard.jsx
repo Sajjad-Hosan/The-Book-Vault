@@ -1,7 +1,16 @@
 import { IoStarHalfOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ book }) => {
-    const { title, author, cover_pic, genre, price, rating } = book;
+    const { _id, title, author, cover_pic, genre, price, rating } = book;
+
+    const scrollUp = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        })
+    }
+
     return (
         <div className="hero bg-slate-100 rounded-lg">
             <div className="hero-content flex-col lg:flex-row gap-5 py-7">
@@ -16,7 +25,7 @@ const ProductCard = ({ book }) => {
                     <p className="py-2 font-bold text-xl">
                         {price} BDT
                     </p>
-                    <button className="btn btn-primary">View Details</button>
+                    <Link to={`/details/${_id}`} onClick={scrollUp} className="btn btn-primary">View Details</Link>
                 </div>
             </div>
         </div>
