@@ -35,10 +35,12 @@ const Navbar = () => {
           </div>
 
           {/* Logo */}
-          <div className="flex items-center mb-4 md:mb-0">
-            <img src="/logo.svg" alt="Logo" className="h-10" />
-            <span className="text-xl font-bold text-black ml-2">The Book Vault</span>
-          </div>
+          <Link to="/">
+            <div className="flex items-center mb-4 md:mb-0">
+              <img src="/logo.svg" alt="Logo" className="h-10" />
+              <span className="text-xl font-bold text-black ml-2">The Book Vault</span>
+            </div>
+          </Link>
 
           {/* Search Bar */}
           <div className="flex-grow w-full md:w-auto mx-0 md:mx-6">
@@ -60,7 +62,7 @@ const Navbar = () => {
           {/* User & Cart */}
           <div className="flex items-center space-x-4 md:space-x-6 mt-4 md:mt-0">
             <a href="#!" className="hidden md:flex items-center hover:text-gray-700">
-              <FaMapMarkerAlt className="mr-2" /> 
+              <FaMapMarkerAlt className="mr-2" />
               Find a Book Store
             </a>
             <a href="/account" className="relative">
@@ -106,9 +108,8 @@ const Navbar = () => {
 
         {/* Sliding Mobile Menu */}
         <div
-          className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
-            menuOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}
+          className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
         >
           {/* Close Button */}
           <div className="flex justify-between items-center p-4 border-b border-gray-200">
