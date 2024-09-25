@@ -1,11 +1,11 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FaGoogle, FaGithub, FaRegEyeSlash, FaRegEye } from "react-icons/fa";
+import { FaGoogle, FaRegEyeSlash, FaRegEye } from "react-icons/fa";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
-  GithubAuthProvider,
+
   GoogleAuthProvider,
   getAuth,
   signInWithPopup,
@@ -63,7 +63,6 @@ const Login = () => {
   };
   const auth = getAuth(app);
   const provider = new GoogleAuthProvider();
-  const gitProvider = new GithubAuthProvider();
 
   const handleGoogleSignIn = () => {
     setRegisterError("");
@@ -78,20 +77,6 @@ const Login = () => {
         errorToast("User Login Unsuccessful !");
       });
   };
-  const handleGithubSignIn = () => {
-    setRegisterError("");
-    setSuccess("");
-    signInWithPopup(auth, gitProvider)
-      .then(() => {
-        successToast();
-        setSuccess("User Logged In Successfully");
-      })
-      .catch((error) => {
-        setRegisterError(error.message);
-        errorToast("User Login Unsuccessful !");
-      });
-  };
-
   return (
     <div className=" flex flex-col lg:flex-row-reverse justify-center items-center mx-auto">
       <div className="w-full dark:invert bg-[url('/register.jpg')] lg:min-h-screen min-h-60 bg-contain bg-no-repeat bg-center flex flex-col justify-center items-center"></div>
@@ -147,13 +132,6 @@ const Login = () => {
             className=" btn text-red-800 text-xl py-2 px-4 rounded-md"
           >
             <FaGoogle></FaGoogle>
-          </button>
-          <button
-            onClick={handleGithubSignIn}
-            type="button"
-            className=" btn text-black text-xl py-2 px-4 rounded-md"
-          >
-            <FaGithub></FaGithub>
           </button>
         </div>
         {registerError && (
