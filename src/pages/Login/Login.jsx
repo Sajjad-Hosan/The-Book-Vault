@@ -78,11 +78,11 @@ const Login = () => {
       });
   };
   return (
-    <div className=" flex flex-col lg:flex-row-reverse justify-center items-center mx-auto">
-      <div className="w-full dark:invert bg-[url('/register.jpg')] lg:min-h-screen min-h-60 bg-contain bg-no-repeat bg-center flex flex-col justify-center items-center"></div>
-      <div className="bg-white dark:bg-gray-400 p-8 rounded-lg shadow-md md:w-2/3 w-96 mx-auto">
+    <div className=" flex flex-col justify-center items-center mx-auto">
+      <div className="w-full dark:invert bg-[url('/register.jpg')] bg-contain bg-no-repeat bg-center flex flex-col justify-center items-center"></div>
+      <div className="bg-white dark:bg-gray-400 pb-5 rounded-lg shadow-md md:w-2/4 w-96 mx-auto">
         <div className="min-h-60 bg-contain bg-no-repeat bg-center flex flex-col justify-center items-center text-center">
-          <h2 className="text-2xl font-semibold mb-4">Log In</h2>
+          <h2 className="text-4xl font-bold">Log In</h2>
         </div>
         <form className="md:max-w-lg mx-auto" onSubmit={handleLogin}>
           <div className="mb-4">
@@ -129,7 +129,7 @@ const Login = () => {
           <button
             onClick={handleGoogleSignIn}
             type="button"
-            className=" btn text-red-800 text-xl py-2 px-4 rounded-md"
+            className=" btn text-red-800 border-red-500 text-xl py-2 px-4 rounded-md"
           >
             <FaGoogle></FaGoogle>
           </button>
@@ -138,9 +138,9 @@ const Login = () => {
           <p className="my-2 text-sm text-red-800">{registerError}</p>
         )}
         {success && <p className="my-2 text-sm text-green-700">{success}</p>}
-        <p className="mt-4 text-sm text-gray-600">
+        <p className="mt-4 text-sm text-gray-600 text-center">
           Don&apos;t have an account?{" "}
-          <Link to={"/register"} className="text-gray-800 hover:underline">
+          <Link to={"/register"} className="text-red-500 hover:underline">
             Register
           </Link>
         </p>
