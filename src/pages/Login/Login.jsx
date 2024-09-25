@@ -83,7 +83,7 @@ const Login = () => {
       <div className="w-full dark:invert bg-[url('/register.jpg')] bg-contain bg-no-repeat bg-center flex flex-col justify-center items-center"></div>
       <div className="bg-white dark:bg-gray-400 pb-5 rounded-lg shadow-md md:w-2/4 w-96 mx-auto">
         <div className="min-h-60 bg-contain bg-no-repeat bg-center flex flex-col justify-center items-center text-center">
-          <h2 className="text-4xl font-bold flex items-center gap-2">Log In <ImEnter className="animate-pulse" /> </h2>
+          <h2 className="text-4xl font-bold flex items-center gap-2">Log In <ImEnter className="animate-pulse text-red-500" /> </h2>
         </div>
         <form className="md:max-w-lg mx-auto" onSubmit={handleLogin}>
           <div className="mb-4">
