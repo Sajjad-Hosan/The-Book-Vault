@@ -25,7 +25,7 @@ const ProductCard = ({ book }) => {
                     <p className="py-2 font-bold text-xl">
                         {price} BDT
                     </p>
-                    <Link to={`/details/${_id}`} onClick={scrollUp} className="btn btn-primary">View Details</Link>
+                    <Link to={`/details/${_id}`} onClick={scrollUp} className="btn bg-[#ef4444] text-white">View Details</Link>
                 </div>
             </div>
         </div>

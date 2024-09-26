@@ -28,7 +28,7 @@ const ProductDetails = () => {
                         {price} BDT
                     </p>
                     <div className="card-actions justify-end">
-                        <button className="btn btn-primary text-xl lg:text-2xl h-14 lg:h-16">Buy Now</button>
+                        <button className="btn bg-[#ef4444] text-white text-xl lg:text-2xl h-14 lg:h-16">Buy Now</button>
                     </div>
                 </div>
             </div>
