@@ -40,10 +40,13 @@ const SliderComponent = () => {
     <div className="container mx-auto my-8">
       <Slider {...sliderSettings}>
 <<<<<<< HEAD
+<<<<<<< HEAD
         {[1, 2].map((i) => (
           <SliderCard key={i} data={i} />
         ))}
 =======
+=======
+>>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
         {/* Slide 1 */}
         <div className="relative ">
           <img
@@ -85,7 +88,10 @@ const SliderComponent = () => {
             </button>
           </div>
         </div>
+<<<<<<< HEAD
 >>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
+=======
+>>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
       </Slider>
     </div>
   );

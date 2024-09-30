@@ -1,5 +1,6 @@
 import { IoStarHalfOutline } from "react-icons/io5";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -20,6 +21,8 @@ const ProductCard = ({ book }) => {
                 <span className="text-3xl font-semibold">{price}</span> BDT
               </p>
 =======
+=======
+>>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ book }) => {
@@ -48,20 +51,11 @@ const ProductCard = ({ book }) => {
                     </p>
                     <Link to={`/details/${_id}`} onClick={scrollUp} className="btn bg-[#ef4444] text-white">View Details</Link>
                 </div>
+<<<<<<< HEAD
 >>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
+=======
+>>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
             </div>
-            <h1 className="text-3xl font-semibold">{title}</h1>
-            <p className="text-sm font-semibold">{author}</p>
-            <div className="flex items-center justify-between mt-14 w-full">
-              <p className="text-2xl">
-                {rating}
-                <IoStarHalfOutline className=" inline pb-1" />
-              </p>
-              <button className="btn btn-neutral">
-                <FaShoppingCart className="text-lg" /> Add to Cart
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </Link>
