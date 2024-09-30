@@ -62,12 +62,21 @@ const Navbar = () => {
           </div>
 
           {/* Logo */}
+<<<<<<< HEAD
           <div className="flex items-center mb-4 md:mb-0">
             <img src="/logo.svg" alt="Logo" className="h-10" />
             <span className="text-xl font-semibold text-black ml-2">
               The Book Vault
             </span>
           </div>
+=======
+          <Link to="/">
+            <div className="flex items-center mb-4 md:mb-0">
+              <img src="/logo.svg" alt="Logo" className="h-10" />
+              <span className="text-xl font-bold text-black ml-2">The Book Vault</span>
+            </div>
+          </Link>
+>>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
 
           {/* Search Bar */}
           <div className="flex-grow w-full md:w-auto mx-0 md:mx-6">
@@ -87,12 +96,18 @@ const Navbar = () => {
 
           {/* User & Cart */}
           <div className="flex items-center space-x-4 md:space-x-6 mt-4 md:mt-0">
+<<<<<<< HEAD
             <a
               href="#!"
               className="btn btn-sm btn-circle btn-ghost flex tooltip"
               data-tip="Find a Book Store"
             >
               <FaMapMarkerAlt className="text-lg" />
+=======
+            <a href="#!" className="hidden md:flex items-center hover:text-gray-700">
+              <FaMapMarkerAlt className="mr-2" />
+              Find a Book Store
+>>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
             </a>
             <a
               href="/wishlist"
@@ -117,7 +132,7 @@ const Navbar = () => {
         </div>
 
         {/* Bottom Navigation & Contact */}
-        <div className="bg-gray-100 py-2 hidden md:block">
+        <div className="py-2 hidden md:block">
           <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-0 space-y-4 md:space-y-0">
             {/* Categories Button */}
             <button
@@ -162,9 +177,14 @@ const Navbar = () => {
 
         {/* Sliding Mobile Menu */}
         <div
+<<<<<<< HEAD
           className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
             menuOpen ? "translate-x-0" : "-translate-x-full"
           }`}
+=======
+          className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
+>>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
         >
           {/* Close Button */}
           <div className="flex justify-between items-center p-4 border-b border-gray-200">
