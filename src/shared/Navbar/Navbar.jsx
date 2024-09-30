@@ -62,12 +62,12 @@ const Navbar = () => {
           </div>
 
           {/* Logo */}
-          <div className="flex items-center mb-4 md:mb-0">
-            <img src="/logo.svg" alt="Logo" className="h-10" />
-            <span className="text-xl font-semibold text-black ml-2">
-              The Book Vault
-            </span>
-          </div>
+          <Link to="/">
+            <div className="flex items-center mb-4 md:mb-0">
+              <img src="/logo.svg" alt="Logo" className="h-10" />
+              <span className="text-xl font-bold text-black ml-2">The Book Vault</span>
+            </div>
+          </Link>
 
           {/* Search Bar */}
           <div className="flex-grow w-full md:w-auto mx-0 md:mx-6">
@@ -87,17 +87,14 @@ const Navbar = () => {
 
           {/* User & Cart */}
           <div className="flex items-center space-x-4 md:space-x-6 mt-4 md:mt-0">
-            <a
-              href="#!"
-              className="btn btn-sm btn-circle btn-ghost flex tooltip"
-              data-tip="Find a Book Store"
-            >
-              <FaMapMarkerAlt className="text-lg" />
+            <a href="#!" className="hidden md:flex items-center hover:text-gray-700">
+              <FaMapMarkerAlt className="mr-2" />
+              Find a Book Store
             </a>
-            <a
-              href="/wishlist"
-              className="btn btn-sm btn-circle btn-ghost flex tooltip"
-            >
+            <a href="/account" className="relative">
+              <FaUser className="text-gray-500 text-lg" />
+            </a>
+            <a href="/wishlist" className="relative">
               <FaHeart className="text-gray-500 text-2xl" />
               <span className="absolute top-3 right-3 text-xs text-white bg-red-500 rounded-full w-5 h-5 flex items-center justify-center">
                 25
@@ -117,7 +114,7 @@ const Navbar = () => {
         </div>
 
         {/* Bottom Navigation & Contact */}
-        <div className="bg-gray-100 py-2 hidden md:block">
+        <div className="py-2 hidden md:block">
           <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-0 space-y-4 md:space-y-0">
             {/* Categories Button */}
             <button
@@ -162,9 +159,8 @@ const Navbar = () => {
 
         {/* Sliding Mobile Menu */}
         <div
-          className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
-            menuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
+          className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'
+            }`}
         >
           {/* Close Button */}
           <div className="flex justify-between items-center p-4 border-b border-gray-200">

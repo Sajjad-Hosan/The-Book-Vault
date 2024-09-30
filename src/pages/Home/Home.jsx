@@ -1,13 +1,21 @@
+import { Link } from "react-router-dom";
+import FavouriteReads from "./FavouriteReads";
 import SliderComponent from "./SliderComponent";
+import TopSellingVendors from "./TopSellingVendors";
+import TrendingNow from "./TrendingNow";
 
 
 
 const Home = () => {
   return (
-    <div>
+    <>
+    <Link to={'/register'}> <button className="btn btn-outline border-red-500 text-red-500 text-center ">Register</button></Link>
       <SliderComponent></SliderComponent>
-      <p className="text-center">Home page</p>
-    </div>
+      <TopSellingVendors></TopSellingVendors>
+      <FavouriteReads></FavouriteReads>
+      <TrendingNow></TrendingNow>
+
+    </>
   );
 };
 

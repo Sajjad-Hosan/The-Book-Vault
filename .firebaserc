@@ -3,3 +3,9 @@
     "default": "the-book-vault"
   }
 }
+
+{
+  "projects": {
+    "default": "the-book-vault-c0cfb"
+  }
+}
