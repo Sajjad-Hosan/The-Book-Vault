@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import ProductCard from "./ProductCard";
+import { FaSearch } from "react-icons/fa";
 
 const ProductsPage = () => {
 
     const [books, setBooks] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
+    const [searchedValue, setSearchedValue] = useState('');
     const [spinner, setSpinner] = useState(true);
 
     useEffect(() => {
@@ -33,10 +35,27 @@ const ProductsPage = () => {
     }, []);
 
     const handleCategory = e => {
-        console.log(e.target.value);
         setSelectedCategory(e.target.value);
     }
-    const selectedBooks = selectedCategory ? books.filter(book => book.genre == selectedCategory) : books;
+
+    const handleSearch = e => {
+        e.preventDefault();
+        const searching = e.target.search.value
+        setSearchedValue(searching.toLowerCase());
+    }
+
+    const selectedBooks = books.filter(book => {
+        
+        // Search
+        const matchedSearch = book.title.toLowerCase().includes(searchedValue) ||
+            book.author.toLowerCase().includes(searchedValue);
+
+        // Filter Category
+        const matchedCategory = selectedCategory ? book.genre == selectedCategory : true;
+
+        return matchedSearch && matchedCategory;
+    });
+
 
 
     return (
@@ -49,8 +68,16 @@ const ProductsPage = () => {
 
             <div className=" w-5/6 mx-auto ">
                 <h1 className=" text-4xl font-bold text-center my-10">Explore Our Collections</h1>
-                <div className=" flex flex-col lg:flex-row gap-5 justify-between">
+                <div className=" flex flex-col lg:flex-row gap-5 justify-between w-48 md:w-72 lg:w-full">
                     <h1 className=" text-xl">Total Books: {selectedBooks.length}</h1>
+
+                    {/* search */}
+
+                    <form onSubmit={handleSearch} className=" relative border-2 max-w-md rounded-lg">
+                        <input type="text" placeholder="book or author name" className="input input-bordered w-full max-w-md" name="search" />
+                        <button className="absolute  right-2.5 top-4"><FaSearch className="text-[#ef4444] w-5 h-5" /></button>
+                    </form>
+
                     <div>
 
                         {/* Category */}
