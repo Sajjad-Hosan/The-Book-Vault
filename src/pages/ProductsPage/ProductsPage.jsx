@@ -2,8 +2,40 @@ import { useEffect } from "react";
 import { useState } from "react";
 import ProductCard from "./ProductCard";
 import { FaSearch } from "react-icons/fa";
+import { IoGrid, IoList } from "react-icons/io5";
+import { FaFilter } from "react-icons/fa";
+import FilterCompo from "../../components/FilterCompo/FilterCompo";
+import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
+
 
 const ProductsPage = () => {
+  const [books, setBooks] = useState([]);
+  useEffect(() => {
+    const booksData = async () => {
+      const response = await fetch("/books.json");
+      const data = await response.json();
+      setBooks(data);
+    };
+    booksData();
+  }, []);
+  return (
+    <div>
+      <div className=" w-5/6 mx-auto ">
+        <div className="flex justify-between items-center">
+          <h1 className=" text-3xl font-semibold text-center my-10">
+            Explore Our Collections
+          </h1>
+          <div className="flex items-center gap-3">
+            <FilterCompo />
+            <div className="join">
+              <button className="btn btn-sm btn-ghost join-item text-xl">
+                <IoGrid />
+              </button>
+              <button className="btn btn-sm btn-ghost join-item text-xl">
+                <IoList />
+              </button>
+            </div>
+          </div>
 
     const [books, setBooks] = useState([]);
     const [categories, setCategories] = useState([]);
