@@ -50,7 +50,7 @@ const SliderComponent = () => {
         {/* Slide 1 */}
         <div className="relative ">
           <img
-            src="/src/assets/book1.jpg"
+            src="https://i.ibb.co.com/n0WSqNf/book1.jpg"
             alt="Slide 1"
             className="w-full max-h-96 object-cover"
           />
@@ -64,7 +64,7 @@ const SliderComponent = () => {
         {/* Slide 2 */}
         <div className="relative">
           <img
-            src="/src/assets/book2.jpg"
+            src="https://i.ibb.co.com/3Sr9QK4/book2.jpg"
             alt="Slide 2"
             className="w-full max-h-96 object-cover"
           />
@@ -78,7 +78,7 @@ const SliderComponent = () => {
         {/* Slide 3 */}
         <div className="relative">
           <img
-            src="/src/assets/book3.jpg"
+            src="https://i.ibb.co.com/WzpSpjj/book3.jpg"
             alt="Slide 3"
             className="w-full max-h-96 object-cover"
           />

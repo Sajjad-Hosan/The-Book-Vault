@@ -1,5 +1,6 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { IoStarHalfOutline } from "react-icons/io5";
+import { FaShareNodes } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 
 const ProductDetails = () => {
@@ -45,9 +46,12 @@ const ProductDetails = () => {
                     <p className="py-2 font-bold text-2xl lg:text-3xl">
                         {price} BDT
                     </p>
-                    <div className="card-actions justify-end gap-6">
-                        <button className="btn bg-[#ef4444] text-white text-xl h-14 ">Add To Cart</button>
-                        <button className="btn bg-[#ef4444] text-white text-xl h-14 ">Buy Now</button>
+                    <div className="card-actions justify-end">
+                        <div className=" flex flex-col md:flex-row gap-6">
+                            <Link className="btn bg-[#ef4444] text-white text-xl h-14 ">Add To Cart</Link>
+                            <Link className="btn bg-[#ef4444] text-white text-xl h-14 ">Buy Now</Link>
+                            <Link className="btn bg-[#ef4444] text-white text-xl h-14 "><FaShareNodes /></Link>
+                        </div>
                     </div>
                 </div>
             </div>
