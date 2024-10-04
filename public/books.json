@@ -66,20 +66,9 @@
       "publishing_year": "1997"
     },
     {
-      "title": "Amar Ami",
-      "author": "Humayun Azad",
-      "cover_pic": "https://example.com/amar_ami.jpg",
-      "genre": "Autobiography",
-      "short_description": "An autobiographical book that delves into the author's mind and experiences.",
-      "publisher": "Agamee Prakashani",
-      "price": "350",
-      "rating": 4.4,
-      "publishing_year": "2000"
-    },
-    {
       "title": "Dipu Number Two",
       "author": "Muhammod Jafar Iqbal",
-      "cover_pic": "https://example.com/dipu_number_two.jpg",
+      "cover_pic": "https://i.ibb.co.com/XJn34Ry/Dipu-Number-Two.jpg",
       "genre": "Children",
       "short_description": "The adventures of a boy named Dipu who moves to a new town.",
       "publisher": "Somoy Prokashon",
@@ -90,7 +79,7 @@
     {
       "title": "Jochona O Jononir Golpo",
       "author": "Humayun Ahmed",
-      "cover_pic": "https://example.com/jochona_o_jononir_golpo.jpg",
+      "cover_pic": "https://i.ibb.co.com/KDNpfLX/Jochona-O-Jononir-Golpo.jpg",
       "genre": "Historical Fiction",
       "short_description": "A touching story set during the Bangladesh Liberation War of 1971.",
       "publisher": "Anya Prokash",
@@ -99,9 +88,9 @@
       "publishing_year": "2004"
     },
     {
-      "title": "Ma",
+      "title": "Maa",
       "author": "Anisul Hoque",
-      "cover_pic": "https://example.com/ma.jpg",
+      "cover_pic": "https://i.ibb.co.com/610xNJ3/Ma.jpg",
       "genre": "Historical Fiction",
       "short_description": "A heart-wrenching story of a mother's love during the Bangladesh Liberation War.",
       "publisher": "Prothoma Prokashon",
@@ -110,31 +99,9 @@
       "publishing_year": "2003"
     },
     {
-      "title": "Lila",
-      "author": "Shomoresh Majumdar",
-      "cover_pic": "https://example.com/lila.jpg",
-      "genre": "Fiction",
-      "short_description": "The story of a woman named Lila who defies societal norms.",
-      "publisher": "Mitro & Ghosh Publishers",
-      "price": "320",
-      "rating": 4.7,
-      "publishing_year": "1998"
-    },
-    {
-      "title": "Haripada Haribol",
-      "author": "Syed Mujtaba Ali",
-      "cover_pic": "https://example.com/haripada_haribol.jpg",
-      "genre": "Fiction",
-      "short_description": "A humorous take on life and society.",
-      "publisher": "Agamee Prakashani",
-      "price": "280",
-      "rating": 4.6,
-      "publishing_year": "1948"
-    },
-    {
       "title": "Lalsalu",
       "author": "Syed Waliullah",
-      "cover_pic": "https://example.com/lalsalu.jpg",
+      "cover_pic": "https://i.ibb.co.com/h1vGwj1/Lalsalu.png",
       "genre": "Fiction",
       "short_description": "A powerful exploration of deception and manipulation in rural Bangladesh.",
       "publisher": "Agamee Prakashani",
@@ -143,14 +110,58 @@
       "publishing_year": "1948"
     },
     {
-      "title": "Madhyabartini",
-      "author": "Syed Mujtaba Ali",
-      "cover_pic": "https://example.com/madhyabartini.jpg",
-      "genre": "Fiction",
-      "short_description": "A heartwarming tale of unrequited love and sacrifice.",
-      "publisher": "Agamee Prakashani",
-      "price": "290",
+      "title": "Time Loop",
+      "author": "Khondokar Mehedi Hasan",
+      "cover_pic": "https://i.ibb.co.com/y47ByFc/Khondokar-Mehedi-Hasan.jpg",
+      "genre": "Science Fiction",
+      "short_description": "A fascinating story involving time travel and parallel universes.",
+      "publisher": "Rokomari",
+      "price": "240",
       "rating": 4.7,
-      "publishing_year": "1950"
+      "publishing_year": "2023"
+    },
+    {
+      "title": "Ekattor-er Dinguli",
+      "author": "Jahanara Imam",
+      "cover_pic": "https://i.ibb.co.com/ygjszjb/Ekattor-er-Dinguli.jpg",
+      "genre": "Memoir",
+      "short_description": "A personal account of the Bangladesh Liberation War.",
+      "publisher": "Shandhani Prakashan",
+      "price": "360",
+      "rating": 4.9,
+      "publishing_year": "1986"
+    },
+    {
+      "title": "Kobi",
+      "author": "Tarashankar Bandopadhyay",
+      "cover_pic": "https://i.ibb.co.com/BnS20wt/Kobi.jpg",
+      "genre": "Fiction",
+      "short_description": "A tale of poetic aspirations and societal challenges in rural Bengal.",
+      "publisher": "Mitro & Ghosh Publishers",
+      "price": "350",
+      "rating": 4.7,
+      "publishing_year": "1944"
+    },
+    {
+      "title": "Mayabon Biharini",
+      "author": "Zobaid Ahsan",
+      "cover_pic": "https://i.ibb.co.com/gvb7XMF/Mayabon-Biharini.jpg",
+      "genre": "Fiction",
+      "short_description": "This novel blends elements of mystery and supernatural occurrences with poetic prose.",
+      "publisher": "Rokomari",
+      "price": "350",
+      "rating": 4.5,
+      "publishing_year": "2023"
+    },
+    {
+      "title": "Prashadputra-2",
+      "author": "Mahin Mahmud",
+      "cover_pic": "https://i.ibb.co.com/kH8zSwR/Prashadputra-2.webp",
+      "genre": "Science Fiction",
+      "short_description": "The sequel to Prashadputra, this book dives into the future of technology and its impact on society.",
+      "publisher": "Rokomari",
+      "price": "400",
+      "rating": 4.4,
+      "publishing_year": "2023"
     }
   ]

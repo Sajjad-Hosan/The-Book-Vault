@@ -39,9 +39,59 @@ const SliderComponent = () => {
   return (
     <div className="container mx-auto my-8">
       <Slider {...sliderSettings}>
+<<<<<<< HEAD
+<<<<<<< HEAD
         {[1, 2].map((i) => (
           <SliderCard key={i} data={i} />
         ))}
+=======
+=======
+>>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
+        {/* Slide 1 */}
+        <div className="relative ">
+          <img
+            src="https://i.ibb.co.com/n0WSqNf/book1.jpg"
+            alt="Slide 1"
+            className="w-full max-h-96 object-cover"
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">
+              Shop Now
+            </button>
+          </div>
+        </div>
+
+        {/* Slide 2 */}
+        <div className="relative">
+          <img
+            src="https://i.ibb.co.com/3Sr9QK4/book2.jpg"
+            alt="Slide 2"
+            className="w-full max-h-96 object-cover"
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">
+              Shop Now
+            </button>
+          </div>
+        </div>
+
+        {/* Slide 3 */}
+        <div className="relative">
+          <img
+            src="https://i.ibb.co.com/WzpSpjj/book3.jpg"
+            alt="Slide 3"
+            className="w-full max-h-96 object-cover"
+          />
+          <div className="absolute inset-0 flex items-center justify-center">
+            <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">
+              Shop Now
+            </button>
+          </div>
+        </div>
+<<<<<<< HEAD
+>>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
+=======
+>>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
       </Slider>
     </div>
   );
