@@ -1,5 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap');
-
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100..800&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -7,5 +6,13 @@
 body {
   font-family: "Sora", sans-serif;
 }
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 /* default any one can remove it */
 
+>>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
+=======
+/* default any one can remove it */
+
+>>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
