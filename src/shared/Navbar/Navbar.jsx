@@ -62,27 +62,21 @@ const Navbar = () => {
           </div>
 
           {/* Logo */}
-<<<<<<< HEAD
-<<<<<<< HEAD
+
           <div className="flex items-center mb-4 md:mb-0">
             <img src="/logo.svg" alt="Logo" className="h-10" />
             <span className="text-xl font-semibold text-black ml-2">
               The Book Vault
             </span>
           </div>
-=======
-=======
->>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
+
+
           <Link to="/">
             <div className="flex items-center mb-4 md:mb-0">
               <img src="/logo.svg" alt="Logo" className="h-10" />
               <span className="text-xl font-bold text-black ml-2">The Book Vault</span>
             </div>
           </Link>
-<<<<<<< HEAD
->>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
-=======
->>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
 
           {/* Search Bar */}
           <div className="flex-grow w-full md:w-auto mx-0 md:mx-6">
@@ -102,24 +96,23 @@ const Navbar = () => {
 
           {/* User & Cart */}
           <div className="flex items-center space-x-4 md:space-x-6 mt-4 md:mt-0">
-<<<<<<< HEAD
-<<<<<<< HEAD
+
             <a
               href="#!"
               className="btn btn-sm btn-circle btn-ghost flex tooltip"
               data-tip="Find a Book Store"
             >
               <FaMapMarkerAlt className="text-lg" />
-=======
+</a>
             <a href="#!" className="hidden md:flex items-center hover:text-gray-700">
               <FaMapMarkerAlt className="mr-2" />
               Find a Book Store
->>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
-=======
+              </a>
+
             <a href="#!" className="hidden md:flex items-center hover:text-gray-700">
               <FaMapMarkerAlt className="mr-2" />
               Find a Book Store
->>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
+
             </a>
             <a href="/account" className="relative">
               <FaUser className="text-gray-500 text-lg" />
@@ -189,19 +182,9 @@ const Navbar = () => {
 
         {/* Sliding Mobile Menu */}
         <div
-<<<<<<< HEAD
-<<<<<<< HEAD
-          className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
-            menuOpen ? "translate-x-0" : "-translate-x-full"
-          }`}
-=======
           className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'
             }`}
->>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
-=======
-          className={`fixed top-0 left-0 w-64 h-full bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${menuOpen ? 'translate-x-0' : '-translate-x-full'
-            }`}
->>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
+
         >
           {/* Close Button */}
           <div className="flex justify-between items-center p-4 border-b border-gray-200">

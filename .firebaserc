@@ -1,19 +1,5 @@
 {
   "projects": {
-<<<<<<< HEAD
-<<<<<<< HEAD
     "default": "the-book-vault"
-=======
-    "default": "the-book-vault-c0cfb"
->>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
-=======
-    "default": "the-book-vault"
-  }
-}
-
-{
-  "projects": {
-    "default": "the-book-vault-c0cfb"
->>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
   }
 }
