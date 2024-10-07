@@ -2,10 +2,6 @@ import { useEffect } from "react";
 import { useState } from "react";
 import ProductCard from "./ProductCard";
 import { FaSearch } from "react-icons/fa";
-import { IoGrid, IoList } from "react-icons/io5";
-import { FaFilter } from "react-icons/fa";
-import FilterCompo from "../../components/FilterCompo/FilterCompo";
-import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 
 
 const ProductsPage = () => {
