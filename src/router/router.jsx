@@ -34,7 +34,7 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <ProductDetails />,
-        loader: ({params}) => fetch(`http://localhost:5000/details/${params.id}`)
+        loader: ({params}) => fetch(`https://the-book-vault-backend.vercel.app/details/${params.id}`)
       }
     ],
   },

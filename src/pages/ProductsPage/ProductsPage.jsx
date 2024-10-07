@@ -20,7 +20,7 @@ const ProductsPage = () => {
 
     useEffect(() => {
         const booksData = async () => {
-            const response = await fetch('http://localhost:5000/allbooks');
+            const response = await fetch('https://the-book-vault-backend.vercel.app/allbooks');
             const data = await response.json();
             setBooks(data);
 
