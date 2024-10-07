@@ -1,5 +1,4 @@
 import { IoStarHalfOutline } from "react-icons/io5";
-import { FaShoppingCart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const ProductCard = ({ book }) => {
@@ -30,7 +29,7 @@ const ProductCard = ({ book }) => {
                 </div>
             </div>
         </div>
-  );
+    );
 };
 
 export default ProductCard;

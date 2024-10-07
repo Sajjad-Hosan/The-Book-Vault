@@ -25,7 +25,6 @@ const ProductDetails = () => {
                 }
             </div>
 
-
             <div className="card flex-col md:flex-row bg-slate-100 shadow-xl my-20 p-5 gap-10">
                 <figure>
                     <img

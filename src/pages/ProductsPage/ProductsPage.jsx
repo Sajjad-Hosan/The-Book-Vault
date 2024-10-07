@@ -2,22 +2,11 @@ import { useEffect } from "react";
 import { useState } from "react";
 import ProductCard from "./ProductCard";
 import { FaSearch } from "react-icons/fa";
-import { IoGrid, IoList } from "react-icons/io5";
-import { FaFilter } from "react-icons/fa";
-import FilterCompo from "../../components/FilterCompo/FilterCompo";
-import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 
 
 const ProductsPage = () => {
-  const [books, setBooks] = useState([]);
-  useEffect(() => {
-    const booksData = async () => {
-      const response = await fetch("/books.json");
-      const data = await response.json();
-      setBooks(data);
-    };
-    booksData();
-  }, []);
+
+    const [books, setBooks] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
     const [searchedValue, setSearchedValue] = useState('');
@@ -32,7 +21,7 @@ const ProductsPage = () => {
 
     useEffect(() => {
         const booksData = async () => {
-            const response = await fetch('http://localhost:5000/allbooks');
+            const response = await fetch('https://the-book-vault-backend.vercel.app/allbooks');
             const data = await response.json();
             setBooks(data);
 
