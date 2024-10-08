@@ -7,39 +7,6 @@ import FilterCompo from "../../components/FilterCompo/FilterCompo";
 import { IoIosArrowRoundBack, IoIosArrowRoundForward } from "react-icons/io";
 
 const ProductsPage = () => {
-<<<<<<< HEAD
-<<<<<<< HEAD
-  const [books, setBooks] = useState([]);
-  useEffect(() => {
-    const booksData = async () => {
-      const response = await fetch("/books.json");
-      const data = await response.json();
-      setBooks(data);
-    };
-    booksData();
-  }, []);
-  return (
-    <div>
-      <div className=" w-5/6 mx-auto ">
-        <div className="flex justify-between items-center">
-          <h1 className=" text-3xl font-semibold text-center my-10">
-            Explore Our Collections
-          </h1>
-          <div className="flex items-center gap-3">
-            <FilterCompo />
-            <div className="join">
-              <button className="btn btn-sm btn-ghost join-item text-xl">
-                <IoGrid />
-              </button>
-              <button className="btn btn-sm btn-ghost join-item text-xl">
-                <IoList />
-              </button>
-            </div>
-          </div>
-=======
-=======
->>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
-
     const [books, setBooks] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('');
@@ -114,10 +81,6 @@ const ProductsPage = () => {
                     }
                 </div>
             </div>
-<<<<<<< HEAD
->>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
-=======
->>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
         </div>
     );
 };

@@ -5,23 +5,23 @@ import "slick-carousel/slick/slick-theme.css"; // Slick carousel theme
 import { FaCartShopping } from "react-icons/fa6";
 import image from "../../assets/book3.jpg";
 
-const SliderCard = ({ data }) => {
-  return (
-    <>
-      <div className="w-full max-h-96 relative card overflow-hidden pl-3">
-        <img src={image} alt="Slide 3" className="object-cover rounded-lg" />
-        <div className="absolute bottom-0 left-4 text-left bg-transparent bg-opacity-30 w-full p-2 overflow-hidden">
-          <h1 className="text-lg font-semibold text-black mt-2">Book Name</h1>
-          <div className="mt-4">
-            <button className="btn btn-sm btn-ghost text-black">
-              <FaCartShopping className="text-lg" /> Shop
-            </button>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
+// const SliderCard = ({ data }) => {
+//   return (
+//     <>
+//       <div className="w-full max-h-96 relative card overflow-hidden pl-3">
+//         <img src={image} alt="Slide 3" className="object-cover rounded-lg" />
+//         <div className="absolute bottom-0 left-4 text-left bg-transparent bg-opacity-30 w-full p-2 overflow-hidden">
+//           <h1 className="text-lg font-semibold text-black mt-2">Book Name</h1>
+//           <div className="mt-4">
+//             <button className="btn btn-sm btn-ghost text-black">
+//               <FaCartShopping className="text-lg" /> Shop
+//             </button>
+//           </div>
+//         </div>
+//       </div>
+//     </>
+//   );
+// };
 
 const SliderComponent = () => {
   // Slider settings for slick
@@ -39,14 +39,9 @@ const SliderComponent = () => {
   return (
     <div className="container mx-auto my-8">
       <Slider {...sliderSettings}>
-<<<<<<< HEAD
-<<<<<<< HEAD
-        {[1, 2].map((i) => (
+        {/* {[1, 2].map((i) => (
           <SliderCard key={i} data={i} />
-        ))}
-=======
-=======
->>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
+        ))} */}
         {/* Slide 1 */}
         <div className="relative ">
           <img
@@ -88,10 +83,6 @@ const SliderComponent = () => {
             </button>
           </div>
         </div>
-<<<<<<< HEAD
->>>>>>> b47cc53ab041655c2118425fd7fda8574c0eb819
-=======
->>>>>>> e41c3bcb6dbc28d8671f0da8ed15845405fcc41c
       </Slider>
     </div>
   );
