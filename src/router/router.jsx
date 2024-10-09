@@ -13,7 +13,7 @@ import Booklist from "../Dashboard/Page/Booklist";
 import User from "../Dashboard/Page/User";
 import Addbooks from "../Dashboard/Page/Addbooks";
 import Charts from "../Dashboard/Page/Charts";
-import Order from "../Dashboard/Order";
+import Order from "../Dashboard/Page/Order";
 
 const router = createBrowserRouter([
   {
