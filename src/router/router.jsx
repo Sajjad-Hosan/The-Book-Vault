@@ -8,6 +8,12 @@ import Error from "../pages/Error/Error";
 import ProductDetails from "../pages/ProductsPage/ProductDetails";
 import Register from "../pages/Register/Register";
 import Login from "../pages/Login/Login";
+import Dashboard from "../Dashboard/Dashboard";
+import Booklist from "../Dashboard/Page/Booklist";
+import User from "../Dashboard/Page/User";
+import Addbooks from "../Dashboard/Page/Addbooks";
+import Charts from "../Dashboard/Page/Charts";
+import Order from "../Dashboard/Page/Order";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +44,32 @@ const router = createBrowserRouter([
       }
     ],
   },
+  {
+    path: "dashboard",
+    element:<Dashboard></Dashboard>,
+    children: [
+      {
+        path:"order",
+        element:<Order></Order>
+      },
+      {
+        path:"bookslist",
+        element:<Booklist></Booklist>,
+      },
+      {
+        path:"users",
+        element:<User></User>
+      },
+      {
+        path:"addbooks",
+        element:<Addbooks>
+        </Addbooks>
+      },
+      {
+        path:"charts",
+        element:<Charts></Charts>
+      }
+    ]}
 ]);
 
 export default router;
