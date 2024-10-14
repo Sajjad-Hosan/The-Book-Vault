@@ -1,4 +1,4 @@
-import React from "react";
+
 import { CiShop } from "react-icons/ci";
 import { FaHome, FaUserPlus } from "react-icons/fa";
 import { FaChartSimple } from "react-icons/fa6";
