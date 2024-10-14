@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const successToast = () => toast.success("User created Successfully");
@@ -12,7 +13,9 @@ const Register = () => {
   const [registerError, setRegisterError] = useState("");
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { createUser } = useContext(AuthContext);
+  const { createUser, googleLogIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleRegister = (e) => {
     e.preventDefault();
@@ -44,6 +47,26 @@ const Register = () => {
         setRegisterError(error.message);
         errorToast();
       });
+  };
+
+  const handleGoogleLogIn = () => {
+    googleLogIn()
+      .then(() => {
+        Swal.fire({
+          title: "Registered!",
+          text: "You've successfully registered.",
+          icon: "success"
+        });
+        navigate('/')
+
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops !",
+          text: error.massage,
+        });
+      })
   };
 
   return (
@@ -103,6 +126,9 @@ const Register = () => {
           Register
         </button>
       </form>
+
+      <button onClick={handleGoogleLogIn} className="btn bg-red-500 text-white font-bold py-2 rounded-md hover:bg-red-600 w-full my-4">Google</button>
+
 
       {/* Error and success messages */}
       {registerError && <p className="mt-4 text-red-600">{registerError}</p>}

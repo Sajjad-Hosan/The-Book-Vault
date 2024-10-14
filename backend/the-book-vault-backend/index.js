@@ -29,6 +29,7 @@ async function run() {
     // await client.connect();
 
     const booksCollection = client.db('TheBookVault').collection('books');
+    const cartCollection = client.db('TheBookVault').collection('CartCollection');
 
 
     //Get Operations
@@ -36,15 +37,30 @@ async function run() {
     app.get('/allBooks', async (req, res) => {
       const result = await booksCollection.find().toArray();
       res.send(result);
-    })
+    });
 
-    app.get('/details/:id', async (req,res) => {
+    app.get('/details/:id', async (req, res) => {
       const id = req.params.id;
-      const query = {_id: new ObjectId(id)};
+      const query = { _id: new ObjectId(id) };
       const result = await booksCollection.findOne(query);
       res.send(result);
+    });
+
+    app.get('/cart', async (req, res) => {
+      const email = req.query.email;
+      const query = { email: email };
+      const result = await cartCollection.find(query).toArray();
+      res.send(result);
     })
- 
+
+    // Post Operations
+
+    app.post('/add_to_cart', async (req, res) => {
+      const add = req.body;
+      const result = await cartCollection.insertOne(add);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     //await client.db("admin").command({ ping: 1 });
     //console.log("Pinged your deployment. You successfully connected to MongoDB!");

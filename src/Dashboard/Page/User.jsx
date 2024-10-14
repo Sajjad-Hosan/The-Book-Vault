@@ -1,5 +1,4 @@
 import React from "react";
-
 const User = () => {
   return (
     <div className="p-6 bg-white shadow-md rounded-lg">
