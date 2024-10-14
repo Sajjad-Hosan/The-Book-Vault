@@ -14,6 +14,9 @@ import User from "../Dashboard/Page/User";
 import Addbooks from "../Dashboard/Page/Addbooks";
 import Charts from "../Dashboard/Page/Charts";
 import Order from "../Dashboard/Page/Order";
+import Profile from "../Dashboard/UserDashboard/Profile/Profile";
+import Wishlist from "../Dashboard/UserDashboard/Wishlist/Wishlist";
+import PrivateRoutes from "./PrivateRoutes";
 
 const router = createBrowserRouter([
   {
@@ -39,37 +42,49 @@ const router = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: <ProductDetails />,
-        loader: ({params}) => fetch(`https://the-book-vault-backend.vercel.app/details/${params.id}`)
+        element: <PrivateRoutes><ProductDetails /></PrivateRoutes>,
+        loader: ({ params }) => fetch(`https://the-book-vault-backend.vercel.app/details/${params.id}`)
       }
     ],
   },
   {
     path: "dashboard",
-    element:<Dashboard></Dashboard>,
+    element: <Dashboard></Dashboard>,
+    errorElement: <Error></Error>,
     children: [
       {
-        path:"order",
-        element:<Order></Order>
+        path: "order",
+        element: <Order></Order>
       },
       {
-        path:"bookslist",
-        element:<Booklist></Booklist>,
+        path: "bookslist",
+        element: <Booklist></Booklist>,
       },
       {
-        path:"users",
-        element:<User></User>
+        path: "users",
+        element: <User></User>
       },
       {
-        path:"addbooks",
-        element:<Addbooks>
+        path: "addbooks",
+        element: <Addbooks>
         </Addbooks>
       },
       {
-        path:"charts",
-        element:<Charts></Charts>
-      }
-    ]}
+        path: "charts",
+        element: <Charts></Charts>
+      },
+
+      // User
+      {
+        path: "profile",
+        element: <PrivateRoutes><Profile /></PrivateRoutes>,
+      },
+      {
+        path: "wishlist",
+        element: <Wishlist />,
+      },
+    ]
+  }
 ]);
 
 export default router;
