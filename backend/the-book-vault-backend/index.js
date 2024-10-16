@@ -26,30 +26,17 @@ const client = new MongoClient(uri, {
 async function run() {
   try {
     // Connect the client to the server	(optional starting in v4.7)
-    //await client.connect();
+    // await client.connect();
 
     const booksCollection = client.db('TheBookVault').collection('books');
-    const usersCollection = client.db('TheBookVault').collection('users');
 
-    // users operation------->>
-    //post user
-    app.post('/users', async (req, res) => {
-      const user = req.body;
-      const query = { email: user.email };
-      const existingUser = await usersCollection.findOne(query)
-      if (existingUser) {
-        return res.send({ message: 'User already exists', insertedId: null })
-      }
-      const result = await usersCollection.insertOne(user);
-      res.send(result)
-    })
 
     //Get Operations------>>
 
     app.get('/allBooks', async (req, res) => {
       const result = await booksCollection.find().toArray();
       res.send(result);
-    })
+    });
 
     app.get('/details/:id', async (req, res) => {
       const id = req.params.id;
@@ -57,7 +44,7 @@ async function run() {
       const result = await booksCollection.findOne(query);
       res.send(result);
     })
-
+ 
     // Send a ping to confirm a successful connection
     //await client.db("admin").command({ ping: 1 });
     //console.log("Pinged your deployment. You successfully connected to MongoDB!");
