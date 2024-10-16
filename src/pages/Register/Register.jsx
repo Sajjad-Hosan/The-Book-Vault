@@ -1,5 +1,5 @@
 import { useContext, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
@@ -14,7 +14,7 @@ const Register = () => {
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, googleLogIn } = useContext(AuthContext);
-
+  const location = useLocation();
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
@@ -40,6 +40,7 @@ const Register = () => {
 
     createUser(email, password, name, photoURL)
       .then(() => {
+        navigate(location?.state ? location.state : "/login");
         setSuccess("User created successfully!");
         successToast();
       })
