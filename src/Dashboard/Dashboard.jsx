@@ -8,55 +8,26 @@ import { NavLink, Outlet } from "react-router-dom";
 const Dashboard = () => {
   return (
     <>
-      <div className="flex bg-blue-100">
-        <h1 className="text-3xl font-bold flex justify-cente items-center py-8 lg:py-1 lg:pt-8 gap-2 mx-9">
+      <div className="flex bg-gray-200 pt-10">
+        <h1 className="text-3xl lg:hidden font-bold flex justify-cente items-center lg:pt-8 gap-2 mx-9">
           <FaHome />
           Dashboard
         </h1>
-        <div className="navbar bg-blue-100">
+        <div className="navbar bg-gray-200 pb-14">
           <div className="flex-1"></div>
-          <div className="flex-none gap-2">
-            <div className="form-control">
-              <h1>Me</h1>
-            </div>
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src="https://avatars.githubusercontent.com/u/99748784?v=4"
-                  />
-                </div>
-              </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
-              >
-                <li>
-                  <a className="justify-between">
-                    Profile
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>Settings</a>
-                </li>
-                <li>
-                  <a>Logout</a>
-                </li>
-              </ul>
-            </div>
-          </div>
+          
         </div>
       </div>
       <div className="flex">
         {/* Sidebar for Large Screens */}
-        <div className="w-80 min-h-screen font-bold bg-blue-100 hidden lg:block">
-          <ul className="mx-5 gap-2 grid">
+        <div className="w-80 min-h-screen font-bold bg-gray-200 hidden lg:block">
+          <ul className="mx-8 gap-2 grid">
+            <span className="justify-center flex text-6xl pt- pr-5">
+            <FaHome className="text-red-600"></FaHome>
+            </span>
+            <h1 className="text-4xl font-bold justify-cente items-center mx-5">
+              Dashboard
+            </h1>
             <div className="divider"></div>
             <li>
               <NavLink
@@ -143,8 +114,8 @@ const Dashboard = () => {
         </div>
 
         {/* Dropdown for Small Screens */}
-        <div className="lg:hidden bg-blue-100">
-          <div className="dropdown bg-blue-100">
+        <div className="lg:hidden bg-gray-200">
+          <div className="dropdown bg-gray-200">
             <div
               tabIndex={0}
               role="button"
@@ -167,7 +138,7 @@ const Dashboard = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content bg-blue-100 rounded-box z-[1] mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-gray-200 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
                 <NavLink to="order">
