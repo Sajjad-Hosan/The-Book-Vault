@@ -1,11 +1,30 @@
-
 import { CiShop } from "react-icons/ci";
 import { FaHome, FaUserPlus } from "react-icons/fa";
 import { FaChartSimple } from "react-icons/fa6";
 import { MdArticle, MdOutlinePublishedWithChanges } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
+import ChaportChat from "./ChaportChat";
+import { useDispatch, useSelector } from "react-redux";
+import { useContext, useEffect } from "react";
+import { fetchusers } from "./GetApi/UserSlice";
+import { AuthContext } from "../Providers/AuthProviders";
 
 const Dashboard = () => {
+  const { logIn, user, loading } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  
+  // Extracting users and state from the Redux store
+  const { users } = useSelector((state) => state.users);
+
+  // Fetch users when the component mounts
+  useEffect(() => {
+    dispatch(fetchusers());
+  }, [dispatch]);
+
+  // Find email of logged-in user from backend
+  const loggedInUser = users.find((u) => u.email === user?.email);
+  console.log(loggedInUser);
+
   return (
     <>
       <div className="flex bg-gray-200 pt-10">
@@ -15,18 +34,21 @@ const Dashboard = () => {
         </h1>
         <div className="navbar bg-gray-200 pb-14">
           <div className="flex-1"></div>
-          
         </div>
       </div>
       <div className="flex">
         {/* Sidebar for Large Screens */}
         <div className="w-80 min-h-screen font-bold bg-gray-200 hidden lg:block">
           <ul className="mx-8 gap-2 grid">
-            <span className="justify-center flex text-6xl pt- pr-5">
-            <FaHome className="text-red-600"></FaHome>
+            <span className="justify-center flex text-4xl pt-8 pr-5">
+              <div className="avatar">
+                <div className="ring-primary ring-offset-base-100 w-24 rounded-full ring ring-offset-2">
+                  <img src={user?.photoURL} />
+                </div>
+              </div>
             </span>
-            <h1 className="text-4xl font-bold justify-cente items-center mx-5">
-              Dashboard
+            <h1 className="text-3xl font-bold justify-center items-center text-center pr-6 mx-5">
+              {user?.displayName}
             </h1>
             <div className="divider"></div>
             <li>
@@ -54,19 +76,21 @@ const Dashboard = () => {
                 <MdArticle /> Book Lists
               </NavLink>
             </li>
-            <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
-                    isActive ? "bg-red-600 text-white" : ""
-                  }`
-                }
-                to="/dashboard/users"
-              >
-                <FaUserPlus />
-                All users
-              </NavLink>
-            </li>
+            {loggedInUser?.role === "admin" && (
+              <li>
+                <NavLink
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                      isActive ? "bg-red-600 text-white" : ""
+                    }`
+                  }
+                  to="/dashboard/users"
+                >
+                  <FaUserPlus />
+                  All users
+                </NavLink>
+              </li>
+            )}
             <li>
               <NavLink
                 className={({ isActive }) =>
@@ -150,11 +174,13 @@ const Dashboard = () => {
                   <MdArticle /> Book Lists
                 </NavLink>
               </li>
-              <li>
-                <NavLink to="/dashboard/users">
-                  <FaUserPlus /> All users
-                </NavLink>
-              </li>
+              {loggedInUser?.role === "admin" && (
+                <li>
+                  <NavLink to="/dashboard/users">
+                    <FaUserPlus /> All users
+                  </NavLink>
+                </li>
+              )}
               <li>
                 <NavLink to="/dashboard/addbooks">
                   <MdOutlinePublishedWithChanges /> Add Books
@@ -191,6 +217,7 @@ const Dashboard = () => {
           <Outlet />
         </div>
       </div>
+      <ChaportChat></ChaportChat>
     </>
   );
 };
