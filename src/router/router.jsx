@@ -17,6 +17,7 @@ import Order from "../Dashboard/Page/Order";
 import Profile from "../Dashboard/UserDashboard/Profile/Profile";
 import Wishlist from "../Dashboard/UserDashboard/Wishlist/Wishlist";
 import PrivateRoutes from "./PrivateRoutes";
+import Privatrout from "../Dashboard/PrivatRoute/privatrout";
 
 const router = createBrowserRouter([
   {
@@ -62,7 +63,7 @@ const router = createBrowserRouter([
       },
       {
         path: "users",
-        element: <User></User>
+        element: <Privatrout><User></User></Privatrout>
       },
       {
         path: "addbooks",

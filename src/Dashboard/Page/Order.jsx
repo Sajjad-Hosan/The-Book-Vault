@@ -10,7 +10,7 @@ const Order = () => {
   return (
     <div className="">
       <Tabs className="text-1">
-        <TabList className="text-black font-bold bg-blue-200 p-2">
+        <TabList className="text-black font-bold bg-gray-300 p-2">
           <Tab selectedClassName="bg-red-600 rounded text-white">
             New Orders
           </Tab>
