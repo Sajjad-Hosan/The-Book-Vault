@@ -16,11 +16,13 @@ const Privatrout = ({ children }) => {
     }, [dispatch]);
   
     const adminUser = users.find((u) => u.email === user?.email);
+    console.log(adminUser);
   
     if (adminUser?.role === "admin") {
       return children;
-    } else {
-      return <Navigate to="/" state={{ from: location }} />;
+    } 
+    else {
+      return <><Div>This page not Found</Div></>;
     }
   };
 
