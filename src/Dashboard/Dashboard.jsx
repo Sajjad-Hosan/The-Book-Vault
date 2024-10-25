@@ -132,7 +132,7 @@ const Dashboard = () => {
             </NavLink>
             <NavLink
               className="flex gap-2 text-center text-red-600 text-2xl items-center"
-              to="/"
+              to="/products"
             >
               <button className="mt-6 px-6 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
                 Products Page
