@@ -10,7 +10,7 @@ import { fetchusers } from "./GetApi/UserSlice";
 import { AuthContext } from "../Providers/AuthProviders";
 
 const Dashboard = () => {
-  const { logIn, user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const dispatch = useDispatch();
   
   // Extracting users and state from the Redux store
