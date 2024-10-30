@@ -14,16 +14,6 @@ const Navbar = () => {
   return (
     <>
       <header className="w-full bg-white border-b border-gray-200 relative z-50">
-        {/* Top Navigation */}
-        <div className="container mx-auto flex items-center justify-between py-2 px-4 md:px-0 text-sm">
-          {/* Left Links */}
-          <div className="hidden md:flex space-x-4">
-            <a href="/about-us" className="hover:text-gray-700">About Us</a>
-            <a href="/account" className="hover:text-gray-700">My Account</a>
-            <a href="/wishlist" className="hover:text-gray-700">Wishlist</a>
-            <a href="/order-tracking" className="hover:text-gray-700">Order Tracking</a>
-          </div>
-        </div>
 
         {/* Main Header */}
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-4 md:px-0">
@@ -65,7 +55,7 @@ const Navbar = () => {
               <FaMapMarkerAlt className="mr-2" />
               Find a Book Store
             </a>
-            <a href="/account" className="relative">
+            <a href="/dashboard/profile" className="relative">
               <FaUser className="text-gray-500 text-lg" />
             </a>
             <a href="/wishlist" className="relative">

@@ -1,6 +1,6 @@
 import { CiShop } from "react-icons/ci";
 import { FaHome, FaUserPlus } from "react-icons/fa";
-import { FaChartSimple } from "react-icons/fa6";
+import { FaChartSimple, FaCircleUser } from "react-icons/fa6";
 import { MdArticle, MdOutlinePublishedWithChanges } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import ChaportChat from "./ChaportChat";
@@ -12,9 +12,9 @@ import { AiOutlineLogout } from "react-icons/ai";
 
 
 const Dashboard = () => {
-  const { logIn, user, loading } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
   const dispatch = useDispatch();
-  
+
   // Extracting users and state from the Redux store
   const { users } = useSelector((state) => state.users);
 
@@ -38,7 +38,9 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex">
+
         {/* Sidebar for Large Screens */}
+
         <div className="w-80 min-h-screen font-bold bg-gray-200 hidden lg:block">
           <ul className="mx-8 gap-2 grid">
             <span className="justify-center flex text-4xl pt-8 pr-5">
@@ -52,11 +54,24 @@ const Dashboard = () => {
               {user?.displayName}
             </h1>
             <div className="divider"></div>
+
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
-                    isActive ? "bg-red-600 text-white" : ""
+                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
+                  }`
+                }
+                to="/dashboard/profile"
+              >
+                <FaCircleUser />
+                Profile
+              </NavLink>
+            </li>
+
+            <li>
+              <NavLink
+                className={({ isActive }) =>
+                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
                   }`
                 }
                 to="order"
@@ -65,11 +80,11 @@ const Dashboard = () => {
                 Orders
               </NavLink>
             </li>
+
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
-                    isActive ? "bg-red-600 text-white" : ""
+                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
                   }`
                 }
                 to="/dashboard/bookslist"
@@ -77,12 +92,13 @@ const Dashboard = () => {
                 <MdArticle /> Book Lists
               </NavLink>
             </li>
+
             {loggedInUser?.role === "admin" && (
+
               <li>
                 <NavLink
                   className={({ isActive }) =>
-                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
-                      isActive ? "bg-red-600 text-white" : ""
+                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
                     }`
                   }
                   to="/dashboard/users"
@@ -95,8 +111,7 @@ const Dashboard = () => {
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
-                    isActive ? "bg-red-600 text-white" : ""
+                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
                   }`
                 }
                 to="/dashboard/addbooks"
@@ -105,11 +120,11 @@ const Dashboard = () => {
                 Add Books
               </NavLink>
             </li>
+
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
-                    isActive ? "bg-red-600 text-white" : ""
+                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
                   }`
                 }
                 to="/dashboard/charts"
@@ -129,7 +144,7 @@ const Dashboard = () => {
             </NavLink>
             <NavLink
               className="flex gap-2 text-center text-red-600 text-2xl items-center"
-              to="/"
+              to="/products"
             >
               <button className="mt-6 px-6 py-3 bg-red-600 flex items-center gap-2 text-white font-semibold rounded-md hover:bg-red-600 transition">
               <AiOutlineLogout />Logout 
@@ -165,6 +180,14 @@ const Dashboard = () => {
               tabIndex={0}
               className="menu menu-sm dropdown-content bg-gray-200 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
+              <li>
+              <NavLink to="/dashboard/profile"
+              >
+                <FaCircleUser />
+                Profile
+              </NavLink>
+            </li>
+
               <li>
                 <NavLink to="order">
                   <CiShop /> Orders

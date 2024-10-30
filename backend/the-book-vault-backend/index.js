@@ -30,9 +30,22 @@ async function run() {
 
     const booksCollection = client.db('TheBookVault').collection('books');
     const cartCollection = client.db('TheBookVault').collection('CartCollection');
+    const usersCollection = client.db('TheBookVault').collection('UsersCollection');
 
+    // users operation------->>
+    //post user
+    // app.post('/users', async (req, res) => {
+    //   const user = req.body;
+    //   const query = { email: user.email };
+    //   const existingUser = await usersCollection.findOne(query)
+    //   if (existingUser) {
+    //     return res.send({ message: 'User already exists', insertedId: null })
+    //   }
+    //   const result = await usersCollection.insertOne(user);
+    //   res.send(result)
+    // })
 
-    //Get Operations
+    //Get Operations------>>
 
     app.get('/allBooks', async (req, res) => {
       const result = await booksCollection.find().toArray();
@@ -54,6 +67,20 @@ async function run() {
     })
 
     // Post Operations
+
+    app.post('/add_user', async (req,res) => {
+      const user = req.body;
+      const query = { email: user.email };
+      const alreadyUser = await usersCollection.findOne(query);
+
+      if(alreadyUser){
+        res.send({insertedId: null});
+      }
+      else{
+        const result = await usersCollection.insertOne(user);
+        res.send(result);
+      }
+    });
 
     app.post('/add_to_cart', async (req, res) => {
       const add = req.body;
