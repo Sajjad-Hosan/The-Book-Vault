@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { Navigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { fetchusers } from "../GetApi/UserSlice";
@@ -22,7 +21,7 @@ const Privatrout = ({ children }) => {
       return children;
     } 
     else {
-      return <><Div>This page not Found</Div></>;
+      return <><div>This page not Found</div></>;
     }
   };
 
