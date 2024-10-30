@@ -8,6 +8,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useContext, useEffect } from "react";
 import { fetchusers } from "./GetApi/UserSlice";
 import { AuthContext } from "../Providers/AuthProviders";
+import { AiOutlineLogout } from "react-icons/ai";
+
 
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
@@ -23,7 +25,6 @@ const Dashboard = () => {
 
   // Find email of logged-in user from backend
   const loggedInUser = users.find((u) => u.email === user?.email);
-  // console.log(loggedInUser);
 
   return (
     <>
@@ -137,16 +138,16 @@ const Dashboard = () => {
               className="flex gap-2 text-center text-red-600 text-2xl items-center"
               to="/"
             >
-              <button className="mt-6 px-6 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
-                Homepage
+              <button className="mt-6 px-6 py-3 flex items-center gap-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
+              <FaHome />Homepage
               </button>
             </NavLink>
             <NavLink
               className="flex gap-2 text-center text-red-600 text-2xl items-center"
               to="/products"
             >
-              <button className="mt-6 px-6 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
-                Products Page
+              <button className="mt-6 px-6 py-3 bg-red-600 flex items-center gap-2 text-white font-semibold rounded-md hover:bg-red-600 transition">
+              <AiOutlineLogout />Logout 
               </button>
             </NavLink>
           </ul>
@@ -228,7 +229,7 @@ const Dashboard = () => {
                 to="/"
               >
                 <button className="mt-6 px-4 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
-                  Products Page
+                  Logout
                 </button>
               </NavLink>
             </ul>
@@ -236,8 +237,8 @@ const Dashboard = () => {
         </div>
 
         {/* Main Content Area */}
-        <div className="flex-1">
-          <Outlet />
+        <div className="flex-1 m-6 rounded-lg border bg-gray-100">
+        <Outlet className=""></Outlet>
         </div>
       </div>
       <ChaportChat></ChaportChat>

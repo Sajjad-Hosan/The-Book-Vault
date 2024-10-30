@@ -1,6 +1,6 @@
 export const getusers = async () => {
     try {
-        const response = await fetch("http://localhost:5000/user");
+        const response = await fetch("https://b9-battle-for-supremacy-server.vercel.app/user");
 
         // Check if the response is OK (status code 200-299)
         if (!response.ok) {
