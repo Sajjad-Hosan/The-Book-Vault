@@ -4,14 +4,9 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-} from "firebase/auth";
-import app from "../../firebase/firebase.config";
 import { ImEnter } from "react-icons/im";
+import Swal from "sweetalert2";
+import useAxios from "../../Hooks/useAxios";
 
 const Login = () => {
   const successToast = () => toast.success("User Logged In Successfully");
@@ -20,9 +15,10 @@ const Login = () => {
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const passErrorToast = (toastText) => toast.error(toastText);
-  const { logIn, user, loading } = useContext(AuthContext);
+  const { logIn, user, loading, googleLogIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const axiosSecure = useAxios();
 
   useEffect(() => {
     if (user) {
@@ -62,21 +58,54 @@ const Login = () => {
         errorToast("User Login Unsuccessful !");
       });
   };
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
 
   const handleGoogleSignIn = () => {
     setRegisterError("");
     setSuccess("");
-    signInWithPopup(auth, provider)
-      .then(() => {
-        successToast();
-        setSuccess("User Logged In Successfully");
+    googleLogIn()
+      .then((userCredential) => {
+        const user = {
+          name: userCredential.user.displayName,
+          email: userCredential.user.email,
+          role: 'user'
+        }
+
+        axiosSecure.post('/add_user', user)
+          .then(res => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                title: "Logged in!",
+                text: "You've successfully logged in!",
+                icon: "success"
+              });
+              navigate('/')
+            }
+            else {
+              Swal.fire({
+                icon: "success",
+                title: "Logged in!",
+                text: "You've successfully logged in!",
+              });
+              navigate('/')
+            }
+          })
+
+          .catch(error => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops !",
+              text: error.massage,
+            });
+          })
       })
-      .catch((error) => {
-        setRegisterError(error.message);
-        errorToast("User Login Unsuccessful !");
-      });
+
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops !",
+          text: error.massage,
+        });
+      })
   };
   return (
     <div className=" flex flex-col justify-center items-center mx-auto">

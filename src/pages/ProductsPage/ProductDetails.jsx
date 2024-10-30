@@ -6,6 +6,9 @@ import Swal from "sweetalert2";
 import { AuthContext } from "../../Providers/AuthProviders";
 import useAxios from "../../Hooks/useAxios";
 import useUserCart from "../../Hooks/useUserCart";
+import { BsWhatsapp } from "react-icons/bs";
+import fb from "../../assets/fb-icon.png"
+import x from "../../assets/x-icon.png"
 
 const ProductDetails = () => {
     const details = useLoaderData();
@@ -84,6 +87,49 @@ const ProductDetails = () => {
 
     }
 
+    const copyLink = () => {
+        const bookURL = window.location.href;
+        navigator.clipboard.writeText(bookURL)
+            .then(() => {
+                Swal.fire({
+                    title: "Copied!",
+                    text: "URL copied.",
+                    icon: "success"
+                });
+            })
+            .catch(error => {
+                Swal.fire({
+                    icon: "error",
+                    title: "Sorry !",
+                    text: error.message,
+                });
+            })
+    }
+
+    const shareOnFacebook = () => {
+        const bookURL = window.location.href;
+        const facebook = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(bookURL)}`;
+        window.open(facebook, '_blank', 'width=600,height=400');
+    }
+
+    const shareOnX = () => {
+        const bookURL = window.location.href;
+        const tweetText = encodeURIComponent("Check out this amazing book!");
+        const twitter = `https://twitter.com/intent/tweet?url=${encodeURIComponent(bookURL)}&text=${tweetText}`;
+
+        window.open(twitter, '_blank', 'width=600,height=400');
+
+    }
+
+    const shareOnWhatsapp = () => {
+        const bookURL = window.location.href;
+        const whatsappMessage = encodeURIComponent(`Check out this amazing book! ${bookURL}`);
+        const whatsappURL = `https://wa.me/?text=${whatsappMessage}`;
+
+        window.open(whatsappURL, '_blank');
+    }
+
+
     return (
         <div className=" w-3/4 mx-auto min-h-screen">
 
@@ -117,11 +163,43 @@ const ProductDetails = () => {
                         <div className=" flex flex-col md:flex-row gap-6">
                             <Link onClick={() => addToWishlist(_id)} className="btn bg-[#ef4444] text-white text-xl h-14 ">Add To Cart</Link>
                             <Link className="btn bg-[#ef4444] text-white text-xl h-14 ">Buy Now</Link>
-                            <Link className="btn bg-[#ef4444] text-white text-xl h-14 "><FaShareNodes /></Link>
+                            <label htmlFor="share_modal" className="btn bg-[#ef4444] text-white text-xl h-14 "><FaShareNodes /></label>
                         </div>
                     </div>
                 </div>
             </div>
+
+            {/* One Click Share Modal */}
+            <input type="checkbox" id="share_modal" className="modal-toggle" />
+            <div className="modal" role="dialog">
+                <div className="modal-box bg-[#ef4444]">
+
+                    <div className=" p-5">
+
+                        <h1 className=" text-center  mb-5 text-3xl font-semibold text-white">Share This book!</h1>
+                        <button onClick={copyLink} className="btn text-[#ef4444] bg-white text-lg h-12 mb-4">Copy URL</button>
+
+                        <h1 className=" mb-3 text-xl font-semibold text-white">Social Media</h1>
+
+                        <div className="grid grid-flow-col gap-4">
+                            <Link onClick={shareOnFacebook} className=" bg-white rounded-full w-12 h-12">
+                                <img src={fb} alt="facebook" className=" bg-white rounded-2xl w-8 h-8 mx-auto mt-2" />
+                            </Link>
+                            <Link onClick={shareOnX} className=" bg-white rounded-full w-12 h-12">
+                                <img src={x} alt="x" className=" bg-white rounded-2xl w-8 h-8 mx-auto mt-2" />
+                            </Link>
+                            <Link onClick={shareOnWhatsapp} className=" bg-white rounded-full w-12 h-12">
+                                <BsWhatsapp className=" bg-white rounded-xl w-8 h-8 mx-auto mt-2" />
+                            </Link>
+                        </div>
+                    </div>
+
+                    <div className="modal-action">
+                        <label htmlFor="share_modal" className="btn">Close!</label>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 };

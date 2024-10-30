@@ -5,16 +5,15 @@ import "react-toastify/dist/ReactToastify.css";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
+import useAxios from "../../Hooks/useAxios";
 
 const Register = () => {
-  const successToast = () => toast.success("User created Successfully");
-  const errorToast = () => toast.error("User creation Unsuccessful !");
   const passErrorToast = (toastText) => toast.error(toastText);
   const [registerError, setRegisterError] = useState("");
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const { createUser, googleLogIn } = useContext(AuthContext);
-
+  const axiosSecure = useAxios();
   const navigate = useNavigate();
 
   const handleRegister = (e) => {
@@ -39,27 +38,88 @@ const Register = () => {
     }
 
     createUser(email, password, name, photoURL)
-      .then(() => {
-        setSuccess("User created successfully!");
-        successToast();
+      .then((userCredential) => {
+        const user = {
+          name: userCredential.user.displayName,
+          email: userCredential.user.email,
+          role: 'user'
+        }
+
+        axiosSecure.post('/add_user', user)
+          .then(res => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                title: "Registered!",
+                text: "You've successfully registered.",
+                icon: "success"
+              });
+              navigate('/')
+            }
+            else {
+              Swal.fire({
+                icon: "error",
+                title: "Email Already Used !",
+                text: "Sorry this email has already used. Try another email.",
+              });
+            }
+          })
+
+          .catch(error => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops !",
+              text: error.massage,
+            });
+          })
       })
-      .catch((error) => {
-        setRegisterError(error.message);
-        errorToast();
-      });
+
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops !",
+          text: error.massage,
+        });
+      })
   };
 
   const handleGoogleLogIn = () => {
     googleLogIn()
-      .then(() => {
-        Swal.fire({
-          title: "Registered!",
-          text: "You've successfully registered.",
-          icon: "success"
-        });
-        navigate('/')
+      .then((userCredential) => {
+        const user = {
+          name: userCredential.user.displayName,
+          email: userCredential.user.email,
+          role: 'user'
+        }
 
+        axiosSecure.post('/add_user', user)
+          .then(res => {
+            if (res.data.insertedId) {
+              Swal.fire({
+                title: "Registered!",
+                text: "You've successfully registered!",
+                icon: "success"
+              });
+              navigate('/')
+            }
+            else {
+              Swal.fire({
+                icon: "success",
+                title: "Logged in!",
+                text: "You've successfully logged in!",
+              });
+              navigate('/')
+            }
+          })
+
+          .catch(error => {
+            Swal.fire({
+              icon: "error",
+              title: "Oops !",
+              text: error.massage,
+            });
+          })
       })
+
       .catch(error => {
         Swal.fire({
           icon: "error",
