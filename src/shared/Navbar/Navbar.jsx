@@ -1,14 +1,36 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import { FaBars, FaTimes, FaMapMarkerAlt, FaUser, FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../Providers/AuthProviders';
+import Swal from 'sweetalert2';
 
 const Navbar = () => {
+
+  const { user, logOut } = useContext(AuthContext);
   const [menuOpen, setMenuOpen] = useState(false); // State to toggle menu
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire({
+          title: "Logged out!",
+          text: "You've successfully logged out.",
+          icon: "success"
+        });
+      })
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops !",
+          text: error.message,
+        });
+      })
+  }
 
   return (
     <>
@@ -90,6 +112,12 @@ const Navbar = () => {
               <i className="fas fa-phone-alt text-gray-500"></i>
               <span className="text-red-500 font-bold">+880 1740 000000</span>
               <span className="text-gray-500">24/7 Support Center</span>
+              {
+                user ?
+                  <Link to='/' onClick={handleLogOut} className=" btn btn-error text-white text-base font-semibold">Log Out</Link>
+                  :
+                  <Link to={'/register'}> <button className="btn btn-outline border-red-500 text-red-500 text-center ">Register Now</button></Link>
+              }
             </div>
           </div>
         </div>
