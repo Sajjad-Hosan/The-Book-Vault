@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { CiSearch } from 'react-icons/ci';
-import { TbCategory2 } from 'react-icons/tb';
 import { FaBars, FaTimes, FaMapMarkerAlt, FaUser, FaHeart, FaShoppingCart } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
@@ -13,7 +12,7 @@ const Navbar = () => {
 
   return (
     <>
-      <header className="w-full bg-white border-b border-gray-200 relative z-50">
+      <header className="w-full bg-white border-b border-gray-200 relative z-50 p-5">
 
         {/* Main Header */}
         <div className="container mx-auto flex flex-col md:flex-row items-center justify-between py-4 px-4 md:px-0">
@@ -73,24 +72,23 @@ const Navbar = () => {
         <div className="py-2 hidden md:block">
           <div className="container mx-auto flex flex-col md:flex-row items-center justify-between px-4 md:px-0 space-y-4 md:space-y-0">
             {/* Categories Button */}
-            <button className="bg-red-500 text-white gap-2 px-4 py-2 rounded-lg flex items-center">
+            {/* <button className="bg-red-500 text-white gap-2 px-4 py-2 rounded-lg flex items-center">
               <TbCategory2 /> <p>Categories</p>
-            </button>
+            </button> */}
 
             {/* Navigation Links */}
-            <nav className="flex space-x-6 text-center">
-              <Link to={'/'}><p className="text-red-500"> Home</p></Link>
-              <Link to={'/products'}>Products</Link>
-              <Link to={'/'}>Vendor</Link>
-              <Link to={'/'}>Pages</Link>
-              <Link to={'/'}>Blog</Link>
-              <Link to={'/'}>Contact</Link>
+            <nav className="flex space-x-6 text-center mx-auto">
+              <Link className="text-black hover:text-red-500" to={'/'}>Home</Link>
+              <Link className="text-black hover:text-red-500" to={'/products'}>Books</Link>
+              <Link className="text-black hover:text-red-500" to={'/'}>Pages</Link>
+              <Link className="text-black hover:text-red-500" to={'/'}>Blog</Link>
+              <Link className="text-black hover:text-red-500" to={'/'}>Contact</Link>
             </nav>
 
             {/* Contact Information */}
             <div className="flex items-center justify-center space-x-2 text-center md:text-left">
               <i className="fas fa-phone-alt text-gray-500"></i>
-              <span className="text-red-500 font-bold">+1 840 - 841 25 69</span>
+              <span className="text-red-500 font-bold">+880 1740 000000</span>
               <span className="text-gray-500">24/7 Support Center</span>
             </div>
           </div>
@@ -112,8 +110,7 @@ const Navbar = () => {
           {/* Menu Items */}
           <nav className="flex flex-col space-y-4 p-4">
             <a href="/home" className="text-black hover:text-red-500">Home</a>
-            <a href="/shop" className="text-black hover:text-red-500">Shop</a>
-            <a href="/vendor" className="text-black hover:text-red-500">Vendor</a>
+            <a href="/products" className="text-black hover:text-red-500">Books</a>
             <a href="/pages" className="text-black hover:text-red-500">Pages</a>
             <a href="/blog" className="text-black hover:text-red-500">Blog</a>
             <a href="/contact" className="text-black hover:text-red-500">Contact</a>
