@@ -1,5 +1,4 @@
 import React, { useContext, useEffect } from "react";
-import { Navigate, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { fetchusers } from "../GetApi/UserSlice";
@@ -16,11 +15,13 @@ const Privatrout = ({ children }) => {
     }, [dispatch]);
   
     const adminUser = users.find((u) => u.email === user?.email);
+    console.log(adminUser);
   
     if (adminUser?.role === "admin") {
       return children;
-    } else {
-      return <Navigate to="/" state={{ from: location }} />;
+    } 
+    else {
+      return <><div>This page not Found</div></>;
     }
   };
 

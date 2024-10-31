@@ -62,7 +62,7 @@ const User = () => {
   }
   if (!isLoading && !isError && users.length > 0) {
     content = (
-      <div className="p-6 bg-white shadow-md rounded-lg">
+      <div className="p-6 bg-gray-150 shadow-md rounded-lg">
         <h2 className="text-2xl font-semibold mb-4">User List</h2>
 
         {/* Table for larger screens */}

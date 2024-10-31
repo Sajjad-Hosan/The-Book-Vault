@@ -9,8 +9,6 @@ import Swal from "sweetalert2";
 import useAxios from "../../Hooks/useAxios";
 
 const Login = () => {
-  const successToast = () => toast.success("User Logged In Successfully");
-  const errorToast = () => toast.error("User log in Unsuccessful !");
   const [registerError, setRegisterError] = useState("");
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -49,14 +47,20 @@ const Login = () => {
     }
     logIn(email, password)
       .then(() => {
+        Swal.fire({
+          title: "Logged in!",
+          text: "You've successfully logged in!",
+          icon: "success"
+        });
         navigate(location?.state ? location.state : "/login");
-        setSuccess("User Logged in Successfully");
-        successToast();
       })
-      .catch((error) => {
-        setRegisterError(error.message);
-        errorToast("User Login Unsuccessful !");
-      });
+      .catch(error => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops !",
+          text: error.message,
+        });
+      })
   };
 
   const handleGoogleSignIn = () => {
@@ -78,7 +82,7 @@ const Login = () => {
                 text: "You've successfully logged in!",
                 icon: "success"
               });
-              navigate('/')
+              navigate(location?.state ? location.state : "/login");
             }
             else {
               Swal.fire({
@@ -94,7 +98,7 @@ const Login = () => {
             Swal.fire({
               icon: "error",
               title: "Oops !",
-              text: error.massage,
+              text: error.message,
             });
           })
       })
@@ -103,7 +107,7 @@ const Login = () => {
         Swal.fire({
           icon: "error",
           title: "Oops !",
-          text: error.massage,
+          text: error.message,
         });
       })
   };

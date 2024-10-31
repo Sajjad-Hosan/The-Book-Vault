@@ -88,6 +88,13 @@ async function run() {
       res.send(result);
     });
 
+    //add to books
+    app.post("/addbook", async (req, res) => {
+      const newbook = req.body;
+      const result = await booksCollection.insertOne(newbook);
+      res.send(result);
+    });
+
     // Send a ping to confirm a successful connection
     //await client.db("admin").command({ ping: 1 });
     //console.log("Pinged your deployment. You successfully connected to MongoDB!");

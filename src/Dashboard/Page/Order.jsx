@@ -8,8 +8,8 @@ import Cancel from "./orderpages/cancel";
 
 const Order = () => {
   return (
-    <div className="">
-      <Tabs className="text-1">
+    <div className="rounded-lg">
+      <Tabs className="text-1 p-4">
         <TabList className="text-black font-bold bg-gray-300 p-2">
           <Tab selectedClassName="bg-red-600 rounded text-white">
             New Orders
@@ -25,7 +25,7 @@ const Order = () => {
           </Tab>
         </TabList>
 
-        <TabPanel>
+        <TabPanel className="p-2">
           <Neworders></Neworders>
         </TabPanel>
         <TabPanel>
