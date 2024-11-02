@@ -1,6 +1,6 @@
 export const getusers = async () => {
     try {
-        const response = await fetch("http://localhost:5000/users");
+        const response = await fetch("https://the-book-vault-backend.vercel.app");
 
         // Check if the response is OK (status code 200-299)
         if (!response.ok) {
