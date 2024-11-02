@@ -3,7 +3,6 @@ import { MdEditDocument } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import useAxios from "../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import { confirmPasswordReset } from "firebase/auth";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
 import { toast } from "react-toastify";
@@ -33,12 +32,12 @@ const AllBooklist = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axiosSecure
-          .delete(`/blog/${id}`)
+          .delete(`/books/${id}`)
           .then((res) => {
             if (res.data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
-                text: "Your blog has been deleted.",
+                text: "Your books has been deleted.",
                 icon: "success",
               });
               refetch();
@@ -48,7 +47,7 @@ const AllBooklist = () => {
             console.error("Error deleting blog:", error);
             Swal.fire({
               title: "Error!",
-              text: "There was a problem deleting your blog.",
+              text: "There was a problem deleting your books.",
               icon: "error",
             });
           });
@@ -143,7 +142,7 @@ const AllBooklist = () => {
                     <MdEditDocument />{" "}
                   </button>
                   <button
-                    onClick={handleDelete}
+                    onClick={() => handleDelete(data?._id)}
                     className="text-red-600 btn text-2xl"
                   >
                     <MdDeleteForever />{" "}
@@ -174,74 +173,65 @@ const AllBooklist = () => {
 
       {/* Grid for smaller screens */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:hidden">
-        {/* Book 1 */}
-        <div className="border p-4 rounded-lg shadow-md">
-          <div className="mb-2">
-            <span className="font-bold">Book Title:</span> The Great Gatsby
+        {allBooks?.map((data) => (
+          <div key={data._id} className="border p-4 rounded-lg shadow-md">
+            <div className="mb-2">
+              <span className="font-bold">Book Title:</span> {data?.title}
+            </div>
+            <div className="mb-2">
+              <span className="font-bold">Author:</span> {data?.author}
+            </div>
+            <div className="mb-2">
+              <span className="font-bold">Category:</span>{" "}
+              {data?.category || "Classic"}
+            </div>
+            <div className="mb-2">
+              <span className="font-bold">Price:</span> ${data?.price}
+            </div>
+            <div className="mb-2">
+              <span
+                className={
+                  data?.inStock
+                    ? "text-green-600 font-semibold"
+                    : "text-red-600 font-semibold"
+                }
+              >
+                {data?.inStock ? "In Stock" : "Out of Stock"}
+              </span>
+            </div>
+            <div className="grid gap-4">
+              <button
+                className="text-blue-600 btn"
+                onClick={() => {
+                  /* Edit functionality */
+                }}
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(data?._id)}
+                className="text-red-600 btn"
+              >
+                Delete
+              </button>
+                  {data?.status === "pending" || data?.status === "Decline" ? (
+                    <button
+                      onClick={() => handleApprove(data)}
+                      className="text-green-600 btn"
+                    >
+                      Approve
+                    </button>
+                  ) : data?.status === "approve" ? (
+                    <button
+                      onClick={() => handleDecline(data)}
+                      className="text-red-600 btn"
+                    >
+                      Decline
+                    </button>
+                  ) : null}
+            </div>
           </div>
-          <div className="mb-2">
-            <span className="font-bold">Author:</span> F. Scott Fitzgerald
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Category:</span> Classic
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Price:</span> $10.99
-          </div>
-          <div className="mb-2">
-            <span className="text-green-600 font-semibold">In Stock</span>
-          </div>
-          <div className="flex gap-4">
-            <button className="text-blue-600 btn">Edit</button>
-            <button className="text-red-600 btn">Delete</button>
-          </div>
-        </div>
-
-        {/* Book 2 */}
-        <div className="border p-4 rounded-lg shadow-md">
-          <div className="mb-2">
-            <span className="font-bold">Book Title:</span> 1984
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Author:</span> George Orwell
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Category:</span> Dystopian
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Price:</span> $8.99
-          </div>
-          <div className="mb-2">
-            <span className="text-red-600 font-semibold">Out of Stock</span>
-          </div>
-          <div className="flex gap-4">
-            <button className="text-blue-600 btn">Edit</button>
-            <button className="text-red-600 btn">Delete</button>
-          </div>
-        </div>
-
-        {/* Book 3 */}
-        <div className="border p-4 rounded-lg shadow-md">
-          <div className="mb-2">
-            <span className="font-bold">Book Title:</span> To Kill a Mockingbird
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Author:</span> Harper Lee
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Category:</span> Fiction
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Price:</span> $12.50
-          </div>
-          <div className="mb-2">
-            <span className="text-green-600 font-semibold">In Stock</span>
-          </div>
-          <div className="flex gap-4">
-            <button className="text-blue-600 btn">Edit</button>
-            <button className="text-red-600 btn">Delete</button>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );
