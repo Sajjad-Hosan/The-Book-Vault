@@ -9,9 +9,10 @@ import { useContext, useEffect } from "react";
 import { fetchusers } from "./GetApi/UserSlice";
 import { AuthContext } from "../Providers/AuthProviders";
 import { AiOutlineLogout } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut} = useContext(AuthContext);
   const dispatch = useDispatch();
 
   // Extracting users and state from the Redux store
@@ -24,6 +25,24 @@ const Dashboard = () => {
 
   // Find email of logged-in user from backend
   const loggedInUser = users.find((u) => u.email === user?.email);
+
+  const handleLogOut = () => {
+    logOut()
+        .then(() => {
+            Swal.fire({
+                title: "Logged out!",
+                text: "You've successfully logged out.",
+                icon: "success"
+            });
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: "error",
+                title: "Oops !",
+                text: error.massage,
+            });
+        })
+}
 
   return (
     <>
@@ -68,17 +87,20 @@ const Dashboard = () => {
             </li>
 
             <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
-                    isActive ? "bg-red-600 text-white" : ""
-                  }`
-                }
-                to="order"
-              >
-                <CiShop />
-                Orders
-              </NavLink>
+              {(loggedInUser?.role === "seller" ||
+                loggedInUser?.role === "admin") && (
+                  <NavLink
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                        isActive ? "bg-red-600 text-white" : ""
+                      }`
+                    }
+                    to="order"
+                  >
+                    <CiShop />
+                    Orders
+                  </NavLink>
+                )}
             </li>
 
             <li>
@@ -94,16 +116,18 @@ const Dashboard = () => {
                   <MdArticle /> All Book Lists
                 </NavLink>
               ) : (
-                <NavLink
-                  className={({ isActive }) =>
-                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
-                      isActive ? "bg-red-600 text-white" : ""
-                    }`
-                  }
-                  to="/dashboard/bookslist"
-                >
-                  <MdArticle /> Book Lists
-                </NavLink>
+                loggedInUser?.role === "seller" && (
+                  <NavLink
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                        isActive ? "bg-red-600 text-white" : ""
+                      }`
+                    }
+                    to="/dashboard/bookslist"
+                  >
+                    <MdArticle /> Book Lists
+                  </NavLink>
+                )
               )}
             </li>
 
@@ -123,31 +147,37 @@ const Dashboard = () => {
               </li>
             )}
             <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
-                    isActive ? "bg-red-600 text-white" : ""
-                  }`
-                }
-                to="/dashboard/addbooks"
-              >
-                <MdOutlinePublishedWithChanges />
-                Add Books
-              </NavLink>
+              {(loggedInUser?.role === "seller" ||
+                loggedInUser?.role === "admin") && (
+                  <NavLink
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                        isActive ? "bg-red-600 text-white" : ""
+                      }`
+                    }
+                    to="/dashboard/addbooks"
+                  >
+                    <MdOutlinePublishedWithChanges />
+                    Add Books
+                  </NavLink>
+                )}
             </li>
 
             <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
-                    isActive ? "bg-red-600 text-white" : ""
-                  }`
-                }
-                to="/dashboard/charts"
-              >
-                <FaChartSimple />
-                Charts
-              </NavLink>
+              {(loggedInUser?.role === "seller" ||
+                loggedInUser?.role === "admin") && (
+                <NavLink
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                      isActive ? "bg-red-600 text-white" : ""
+                    }`
+                  }
+                  to="/dashboard/charts"
+                >
+                  <FaChartSimple />
+                  Charts
+                </NavLink>
+              )}
             </li>
             <div className="divider"></div>
             <NavLink
@@ -163,7 +193,7 @@ const Dashboard = () => {
               className="flex gap-2 text-center text-red-600 text-2xl items-center"
               to="/products"
             >
-              <button className="mt-6 px-6 py-3 bg-red-600 flex items-center gap-2 text-white font-semibold rounded-md hover:bg-red-600 transition">
+              <button onClick={handleLogOut} className="mt-6 px-6 py-3 bg-red-600 flex items-center gap-2 text-white font-semibold rounded-md hover:bg-red-600 transition">
                 <AiOutlineLogout />
                 Logout
               </button>
@@ -251,7 +281,7 @@ const Dashboard = () => {
                 className="flex gap-2 text-center text-red-600 text-xl items-center"
                 to="/"
               >
-                <button className="mt-6 px-4 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
+                <button to='/' onClick={handleLogOut} className="mt-6 px-4 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
                   Logout
                 </button>
               </NavLink>

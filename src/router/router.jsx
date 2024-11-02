@@ -20,6 +20,7 @@ import PrivateRoutes from "./PrivateRoutes";
 import Privatrout from "../Dashboard/PrivatRoute/privatrout";
 import AllBooklist from "../Dashboard/Page/AllBooklist";
 import PrivateDashboard from "../Dashboard/PrivatRoute/PrivateDashboard";
+import PrivateSeller from "../Dashboard/PrivatRoute/PrivateSeller";
 
 const router = createBrowserRouter([
   {
@@ -57,11 +58,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "order",
-        element: <Order></Order>
+        element: <PrivateSeller><Order></Order></PrivateSeller>
       },
       {
         path: "bookslist",
-        element: <Booklist></Booklist>,
+        element: <PrivateSeller><Booklist></Booklist></PrivateSeller>,
       },
       {
         path:"allbookslist",
@@ -74,12 +75,12 @@ const router = createBrowserRouter([
       },
       {
         path: "addbooks",
-        element: <Addbooks>
-        </Addbooks>
+        element: <PrivateSeller><Addbooks>
+        </Addbooks></PrivateSeller>
       },
       {
         path: "charts",
-        element: <Charts></Charts>
+        element: <PrivateSeller><Charts></Charts></PrivateSeller>
       },
 
       // User

@@ -284,14 +284,6 @@ const AllBooklist = () => {
                 <MdEditDocument />{" "}
               </button>
               <button
-                className="text-blue-600 btn"
-                onClick={() => {
-                  /* Edit functionality */
-                }}
-              >
-                Edit
-              </button>
-              <button
                 onClick={() => handleDelete(data?._id)}
                 className="text-red-600 btn"
               >

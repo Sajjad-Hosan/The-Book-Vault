@@ -17,7 +17,7 @@ const Addbooks = () => {
     const formData = new FormData();
     formData.append("image", file);
 
-    //image upload
+    // Image upload
     try {
       const response = await axios.post(
         "https://api.imgbb.com/1/upload?key=40e12a0fb8ad7194b0c97ec21a585d32",
@@ -29,7 +29,7 @@ const Addbooks = () => {
     }
   };
 
-  //Books added
+  // Books added
   const handleSubmitedBooks = async (e) => {
     e.preventDefault();
     const title = e.target.title.value;
@@ -83,11 +83,11 @@ const Addbooks = () => {
   };
 
   return (
-    <div className="max-w-xl mx-auto p-6 bg-white shadow-md my-8 rounded-lg">
+    <div className="max-w-md mx-auto p-6 bg-white shadow-md my-8 rounded-lg">
       <h2 className="text-2xl font-semibold mb-6 text-center">Add New Book</h2>
       <form onSubmit={handleSubmitedBooks} className="space-y-4">
         {/* Book Name */}
-        <div className="w-full md:w-1/2 lg:w-full mx-auto">
+        <div className="w-full">
           <label className="block text-gray-700 font-medium mb-1">
             Book Name
           </label>
@@ -96,11 +96,12 @@ const Addbooks = () => {
             type="text"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter the book name"
+            required
           />
         </div>
 
         {/* Writer Name */}
-        <div className="w-full md:w-1/2 lg:w-full mx-auto">
+        <div className="w-full">
           <label className="block text-gray-700 font-medium mb-1">
             Writer Name
           </label>
@@ -109,11 +110,12 @@ const Addbooks = () => {
             type="text"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter the writer's name"
+            required
           />
         </div>
 
         {/* Publisher */}
-        <div className="w-full md:w-1/2 lg:w-full mx-auto">
+        <div className="w-full">
           <label className="block text-gray-700 font-medium mb-1">
             Publisher
           </label>
@@ -122,43 +124,52 @@ const Addbooks = () => {
             type="text"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter the publisher's name"
+            required
           />
         </div>
-        <h6 className="block -mb-3 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-blue-gray-900">
+
+        {/* Image Upload */}
+        <h6 className="block text-sm font-semibold mb-1 text-blue-gray-900">
           Image Upload
         </h6>
-        <div className="relative h-11 w-full min-w-[200px]">
+        <div className="relative w-full">
           <input
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
             required
+            className="border px-4 py-2 rounded-md w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
-        <div className="w-full md:w-1/2 lg:w-full mx-auto">
+
+        {/* Genre */}
+        <div className="w-full">
           <label className="block text-gray-700 font-medium mb-1">Genre</label>
           <input
             name="genre"
             type="text"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter the genre"
+            required
           />
         </div>
-        {/* Summary */}
-        <div className="w-full md:w-full lg:w-full mx-auto">
+
+        {/* Short Description */}
+        <div className="w-full">
           <label className="block text-gray-700 font-medium mb-1">
-            Short_description
+            Short Description
           </label>
           <textarea
             name="short_description"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             rows="4"
             placeholder="Enter a brief summary of the book"
+            required
           ></textarea>
         </div>
 
         {/* Published Date */}
-        <div className="w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <div className="w-full">
           <label className="block text-gray-700 font-medium mb-1">
             Published Date
           </label>
@@ -166,11 +177,12 @@ const Addbooks = () => {
             name="publishing_year"
             type="date"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            required
           />
         </div>
 
         {/* Price */}
-        <div className="w-full md:w-1/2 lg:w-1/2 mx-auto">
+        <div className="w-full">
           <label className="block text-gray-700 font-medium mb-1">
             Price ($)
           </label>
@@ -179,6 +191,7 @@ const Addbooks = () => {
             type="number"
             className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="Enter the price"
+            required
           />
         </div>
 

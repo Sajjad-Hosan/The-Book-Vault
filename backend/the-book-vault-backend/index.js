@@ -88,6 +88,29 @@ async function run() {
       res.send(result);
     });
 
+    //user profile update
+    app.patch("/user/update/:id", async (req, res) => {
+      const id = req.params.id;
+      const user = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          ...user,
+        },
+      };
+
+      try {
+        const result = await usersCollection.updateOne(filter, updateDoc);
+        if (result.matchedCount === 0) {
+          return res.status(404).send({ message: "user not found" });
+        }
+        res.send(result);
+      } catch (error) {
+        console.error("Error updating blog:", error);
+        res.status(500).send({ message: "Failed to update user", error });
+      }
+    });
+
     app.post('/add_to_cart', async (req, res) => {
       const add = req.body;
       const result = await cartCollection.insertOne(add);
@@ -186,11 +209,11 @@ async function run() {
     // books update
     app.patch("/booksupdate/:id", async (req, res) => {
       const id = req.params.id;
-      const blog = req.body;
+      const books = req.body;
       const filter = { _id: new ObjectId(id) };
       const updateDoc = {
         $set: {
-          ...blog,
+          ...books,
         },
       };
 
@@ -201,7 +224,7 @@ async function run() {
         }
         res.send(result);
       } catch (error) {
-        console.error("Error updating blog:", error);
+        console.error("Error updating books:", error);
         res.status(500).send({ message: "Failed to update books", error });
       }
     });

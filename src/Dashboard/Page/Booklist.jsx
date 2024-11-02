@@ -5,6 +5,7 @@ import useAxios from "../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
 import { confirmPasswordReset } from "firebase/auth";
 import { AuthContext } from "../../Providers/AuthProviders";
+import Swal from "sweetalert2";
 
 const Booklist = () => {
   const { user } = useContext(AuthContext);
@@ -17,6 +18,42 @@ const Booklist = () => {
       return res.data;
     },
   });
+
+  //handle delete
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/books/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your books has been deleted.",
+                icon: "success",
+              });
+              refetch();
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting blog:", error);
+            Swal.fire({
+              title: "Error!",
+              text: "There was a problem deleting your books.",
+              icon: "error",
+            });
+          });
+      }
+    });
+  };
 
   //books update
   const handleUpdateBooks = async (book) => {
@@ -80,6 +117,8 @@ const Booklist = () => {
       },
     });
 
+    
+
     if (formValues) {
       try {
         await axiosSecure.patch(`/booksupdate/${book._id}`, formValues);
@@ -129,24 +168,12 @@ const Booklist = () => {
                   >
                     <MdEditDocument />{" "}
                   </button>
-                  <button className="text-red-600 btn text-2xl">
-                    <MdDeleteForever />{" "}
+                  <button
+                    onClick={() => handleDelete(data?._id)}
+                    className="text-red-600 btn"
+                  >
+                    Delete
                   </button>
-                  {data?.status === "pending" || data?.status === "decline" ? (
-                    <button
-                      onClick={handleApprove}
-                      className="text-green-600 btn text-2xl"
-                    >
-                      Approve
-                    </button>
-                  ) : data?.status === "Approved" ? (
-                    <button
-                      onClick={handleDecline}
-                      className="text-red-600 btn text-2xl"
-                    >
-                      Decline
-                    </button>
-                  ) : null}
                 </td>
               </tr>
             ))}
@@ -156,7 +183,7 @@ const Booklist = () => {
 
       {/* Grid for smaller screens */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:hidden">
-        {allBooks?.map((data) => (
+        {booksuser?.map((data) => (
           <div key={data._id} className="border p-4 rounded-lg shadow-md">
             <div className="mb-2">
               <span className="font-bold">Book Title:</span> {data?.title}
@@ -190,34 +217,11 @@ const Booklist = () => {
                 <MdEditDocument />{" "}
               </button>
               <button
-                className="text-blue-600 btn"
-                onClick={() => {
-                  /* Edit functionality */
-                }}
-              >
-                Edit
-              </button>
-              <button
                 onClick={() => handleDelete(data?._id)}
                 className="text-red-600 btn"
               >
                 Delete
               </button>
-              {data?.status === "pending" || data?.status === "Decline" ? (
-                <button
-                  onClick={() => handleApprove(data)}
-                  className="text-green-600 btn"
-                >
-                  Approve
-                </button>
-              ) : data?.status === "approve" ? (
-                <button
-                  onClick={() => handleDecline(data)}
-                  className="text-red-600 btn"
-                >
-                  Decline
-                </button>
-              ) : null}
             </div>
           </div>
         ))}

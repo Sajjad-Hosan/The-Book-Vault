@@ -182,14 +182,21 @@ const User = () => {
                     onClick={() => handleMakeAdmin(user)}
                     className="text-blue-600 btn"
                   >
-                    Make a Admin
+                    Make Admin
                   </button>
-                ) : user.role === "admin" || user.role === "user" ? (
+                ) : user.role === "admin" ? (
+                  <button
+                    onClick={() => handleMakeUser(user)}
+                    className="text-blue-600 btn"
+                  >
+                    Make a User
+                  </button>
+                ) : user.role === "user" ? (
                   <button
                     onClick={() => handleMakeSeller(user)}
                     className="text-blue-600 btn"
                   >
-                    Make a Seller
+                    Make Seller
                   </button>
                 ) : null}
                 <button
