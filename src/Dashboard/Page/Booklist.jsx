@@ -18,10 +18,99 @@ const Booklist = () => {
     },
   });
 
+  const handleMakeApprove = (blogs) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Approve!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/blog/aproved/${blogs._id}`).then((res) => {
+          if (res.data.modifiedCount > 0) {
+            Swal.fire({
+              title: "Approved!",
+              text: "Your book has been Approved.",
+              icon: "success",
+            });
+            refetch();
+            toast.success("blog Approved Sucesss");
+          }
+        });
+      }
+    });
+  };
+
+  //handle delete
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/blog/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your blog has been deleted.",
+                icon: "success",
+              });
+              refetch();
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting blog:", error);
+            Swal.fire({
+              title: "Error!",
+              text: "There was a problem deleting your blog.",
+              icon: "error",
+            });
+          });
+      }
+    });
+  };
+
+  //blogs Decline
+  const handleDecline = (blogs) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, decline it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/blog/decline/${blogs._id}`).then((res) => {
+          console.log(blogs._id);
+          if (res.data.modifiedCount > 0) {
+            Swal.fire({
+              title: "Decline!",
+              text: "Your blog has been decline.",
+              icon: "success",
+            });
+            refetch();
+            toast.success("Blog Decline Success");
+          }
+        });
+      }
+    });
+  };
+
   // Find email of self books
   const booksuser = allBooks.filter((b) => b.email === user?.email);
-  console.log(booksuser)
-
+  console.log(booksuser);
 
   return (
     <div className="p-6">
@@ -56,6 +145,21 @@ const Booklist = () => {
                   <button className="text-red-600 btn text-2xl">
                     <MdDeleteForever />{" "}
                   </button>
+                  {data?.status === "pending" || data?.status === "decline" ? (
+                    <button
+                      onClick={handleApprove}
+                      className="text-green-600 btn text-2xl"
+                    >
+                      Approve
+                    </button>
+                  ) : data?.status === "Approved" ? (
+                    <button
+                      onClick={handleDecline}
+                      className="text-red-600 btn text-2xl"
+                    >
+                      Decline
+                    </button>
+                  ) : null}
                 </td>
               </tr>
             ))}
