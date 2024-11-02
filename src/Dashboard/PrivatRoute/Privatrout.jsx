@@ -15,7 +15,6 @@ const Privatrout = ({ children }) => {
     }, [dispatch]);
   
     const adminUser = users.find((u) => u.email === user?.email);
-    console.log(adminUser);
   
     if (adminUser?.role === "admin") {
       return children;

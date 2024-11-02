@@ -18,6 +18,8 @@ import Profile from "../Dashboard/UserDashboard/Profile/Profile";
 import Wishlist from "../Dashboard/UserDashboard/Wishlist/Wishlist";
 import PrivateRoutes from "./PrivateRoutes";
 import Privatrout from "../Dashboard/PrivatRoute/privatrout";
+import AllBooklist from "../Dashboard/Page/AllBooklist";
+import PrivateDashboard from "../Dashboard/PrivatRoute/PrivateDashboard";
 
 const router = createBrowserRouter([
   {
@@ -50,7 +52,7 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <Dashboard></Dashboard>,
+    element: <PrivateDashboard><Dashboard></Dashboard></PrivateDashboard>,
     errorElement: <Error></Error>,
     children: [
       {
@@ -60,6 +62,11 @@ const router = createBrowserRouter([
       {
         path: "bookslist",
         element: <Booklist></Booklist>,
+      },
+      {
+        path:"allbookslist",
+        element:<AllBooklist></AllBooklist>
+
       },
       {
         path: "users",

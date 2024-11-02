@@ -6,7 +6,7 @@ import { useQuery } from "@tanstack/react-query";
 import { confirmPasswordReset } from "firebase/auth";
 import { AuthContext } from "../../Providers/AuthProviders";
 
-const Booklist = () => {
+const AllBooklist = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxios();
 
@@ -18,9 +18,6 @@ const Booklist = () => {
     },
   });
 
-  // Find email of self books
-  const booksuser = allBooks.filter((b) => b.email === user?.email);
-  console.log(booksuser)
 
 
   return (
@@ -40,7 +37,7 @@ const Booklist = () => {
           </thead>
           <tbody>
             {/* Row 1 */}
-            {booksuser?.map((data, index) => (
+            {allBooks?.map((data, index) => (
               <tr className="border-b">
                 <td className="px-4 py-2">{data?.title}</td>
                 <td className="px-4 py-2">{data?.author}</td>
@@ -138,4 +135,4 @@ const Booklist = () => {
   );
 };
 
-export default Booklist;
+export default AllBooklist;

@@ -10,7 +10,6 @@ import { fetchusers } from "./GetApi/UserSlice";
 import { AuthContext } from "../Providers/AuthProviders";
 import { AiOutlineLogout } from "react-icons/ai";
 
-
 const Dashboard = () => {
   const { user } = useContext(AuthContext);
   const dispatch = useDispatch();
@@ -38,7 +37,6 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex">
-
         {/* Sidebar for Large Screens */}
 
         <div className="w-80 min-h-screen font-bold bg-gray-200 hidden lg:block">
@@ -58,7 +56,8 @@ const Dashboard = () => {
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
+                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                    isActive ? "bg-red-600 text-white" : ""
                   }`
                 }
                 to="/dashboard/profile"
@@ -71,7 +70,8 @@ const Dashboard = () => {
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
+                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                    isActive ? "bg-red-600 text-white" : ""
                   }`
                 }
                 to="order"
@@ -82,23 +82,37 @@ const Dashboard = () => {
             </li>
 
             <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
-                  }`
-                }
-                to="/dashboard/bookslist"
-              >
-                <MdArticle /> Book Lists
-              </NavLink>
+              {loggedInUser?.role === "admin" ? (
+                <NavLink
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                      isActive ? "bg-red-600 text-white" : ""
+                    }`
+                  }
+                  to="/dashboard/Allbookslist"
+                >
+                  <MdArticle /> All Book Lists
+                </NavLink>
+              ) : (
+                <NavLink
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                      isActive ? "bg-red-600 text-white" : ""
+                    }`
+                  }
+                  to="/dashboard/bookslist"
+                >
+                  <MdArticle /> Book Lists
+                </NavLink>
+              )}
             </li>
 
             {loggedInUser?.role === "admin" && (
-
               <li>
                 <NavLink
                   className={({ isActive }) =>
-                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
+                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                      isActive ? "bg-red-600 text-white" : ""
                     }`
                   }
                   to="/dashboard/users"
@@ -111,7 +125,8 @@ const Dashboard = () => {
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
+                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                    isActive ? "bg-red-600 text-white" : ""
                   }`
                 }
                 to="/dashboard/addbooks"
@@ -124,7 +139,8 @@ const Dashboard = () => {
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
+                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                    isActive ? "bg-red-600 text-white" : ""
                   }`
                 }
                 to="/dashboard/charts"
@@ -139,7 +155,8 @@ const Dashboard = () => {
               to="/"
             >
               <button className="mt-6 px-6 py-3 flex items-center gap-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
-              <FaHome />Homepage
+                <FaHome />
+                Homepage
               </button>
             </NavLink>
             <NavLink
@@ -147,7 +164,8 @@ const Dashboard = () => {
               to="/products"
             >
               <button className="mt-6 px-6 py-3 bg-red-600 flex items-center gap-2 text-white font-semibold rounded-md hover:bg-red-600 transition">
-              <AiOutlineLogout />Logout 
+                <AiOutlineLogout />
+                Logout
               </button>
             </NavLink>
           </ul>
@@ -181,12 +199,11 @@ const Dashboard = () => {
               className="menu menu-sm dropdown-content bg-gray-200 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-              <NavLink to="/dashboard/profile"
-              >
-                <FaCircleUser />
-                Profile
-              </NavLink>
-            </li>
+                <NavLink to="/dashboard/profile">
+                  <FaCircleUser />
+                  Profile
+                </NavLink>
+              </li>
 
               <li>
                 <NavLink to="order">
@@ -194,9 +211,15 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/bookslist">
-                  <MdArticle /> Book Lists
-                </NavLink>
+                {loggedInUser?.role === "admin" ? (
+                  <NavLink to="/dashboard/Allbookslist">
+                    <MdArticle /> All Book Lists
+                  </NavLink>
+                ) : (
+                  <NavLink to="/dashboard/bookslist">
+                    <MdArticle /> Book Lists
+                  </NavLink>
+                )}
               </li>
               {loggedInUser?.role === "admin" && (
                 <li>
@@ -238,7 +261,7 @@ const Dashboard = () => {
 
         {/* Main Content Area */}
         <div className="flex-1 m-6 rounded-lg border bg-gray-100">
-        <Outlet className=""></Outlet>
+          <Outlet className=""></Outlet>
         </div>
       </div>
       <ChaportChat></ChaportChat>

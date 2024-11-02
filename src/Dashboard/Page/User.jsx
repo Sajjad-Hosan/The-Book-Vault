@@ -1,49 +1,73 @@
 import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
 import { fetchusers } from "../GetApi/UserSlice";
+import useAxios from "../../Hooks/useAxios";
+import { toast } from "react-toastify";
+import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const User = () => {
-  const { users, isLoading, isError, error } = useSelector(
-    (state) => state.users
-  );
-  const dispatch = useDispatch();
+  const axiosSecure = useAxios();
 
-  useEffect(() => {
-    dispatch(fetchusers());
-  }, [dispatch]);
+  const {
+    data: users = [],
+    refetch,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
+  });
 
   // Function to handle deleting a user
-  const handleDelete = async (userId) => {
-    try {
-      const response = await fetch(`/api/user/${userId}`, {
-        method: "DELETE",
-      });
-
-      if (response.ok) {
-        dispatch(fetchusers());
-      } else {
-        console.error("Failed to delete user");
+  //handle delete
+  const handleDelete = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure
+          .delete(`/users/${id}`)
+          .then((res) => {
+            if (res.data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your users has been deleted.",
+                icon: "success",
+              });
+              refetch();
+            }
+          })
+          .catch((error) => {
+            console.error("Error deleting blog:", error);
+            Swal.fire({
+              title: "Error!",
+              text: "There was a problem deleting your user.",
+              icon: "error",
+            });
+          });
       }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    });
   };
 
   // Function to handle making a user an admin
-  const handleMakeAdmin = async (userId) => {
-    try {
-      const response = await fetch(`/api/user/${userId}/make-admin`, {
-        method: "PATCH",
-      });
-
-      if (response.ok) {
-        dispatch(fetchusers());
-      } else {
-        console.error("Failed to update user role");
+  const handleMakeAdmin = (users) => {
+    axiosSecure.patch(`/users/admin/${users._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success("Admin sucesss");
       }
-    } catch (error) {
-      console.error("Error:", error);
-    }
+    });
   };
 
   let content;
@@ -83,8 +107,27 @@ const User = () => {
                   <td className="px-4 py-2">{user.email}</td>
                   <td className="px-4 py-2">{user.role}</td>
                   <td className="px-4 py-2 flex gap-5">
-                    <button onClick={() => handleMakeAdmin(user.id)} className="text-blue-600 btn">Make Admin</button>
-                    <button onClick={() => handleDelete(user.id)} className="text-red-600 btn">Delete</button>
+                    {user.role === "user" ? (
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="text-blue-600 btn"
+                      >
+                        Make a Admin
+                      </button>
+                    ) : user.role === "admin" || user.role === "user" ? (
+                      <button
+                        onClick={() => handleMakeSeller(user)}
+                        className="text-blue-600 btn"
+                      >
+                        Make a Seller
+                      </button>
+                    ) : null}
+                    <button
+                      onClick={() => handleDelete(user?._id)}
+                      className="text-red-600 btn"
+                    >
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
@@ -104,8 +147,18 @@ const User = () => {
               </div>
               <div className="flex gap-4">
                 <button className="text-blue-600 btn">Seller</button>
-                <button onClick={() => handleMakeAdmin(user.id)} className="text-blue-600 btn">make Admin</button>
-                <button onClick={() => handleDelete(user.id)} className="text-red-600 btn">Delete</button>
+                <button
+                  onClick={() => handleMakeAdmin(user)}
+                  className="text-blue-600 btn"
+                >
+                  make Admin
+                </button>
+                <button
+                  onClick={() => handleDelete(user)}
+                  className="text-red-600 btn"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           ))}

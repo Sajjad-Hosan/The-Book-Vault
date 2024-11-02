@@ -82,6 +82,12 @@ async function run() {
       }
     });
 
+    //Get users 
+    app.get('/users', async (req, res) => {
+      const result = await usersCollection.find().toArray();
+      res.send(result);
+    });
+
     app.post('/add_to_cart', async (req, res) => {
       const add = req.body;
       const result = await cartCollection.insertOne(add);
@@ -92,6 +98,42 @@ async function run() {
     app.post("/addbook", async (req, res) => {
       const newbook = req.body;
       const result = await booksCollection.insertOne(newbook);
+      res.send(result);
+    });
+
+    //Make a admin
+    // make admin api
+    app.patch("/users/admin/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          role: "admin",
+        },
+      };
+      const result = await usersCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+    //make user selle
+
+    app.patch("/users/admin/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          role: "admin",
+        },
+      };
+      const result = await usersCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+    // make admin and seller delete api
+    app.delete("/users/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await usersCollection.deleteOne(query);
       res.send(result);
     });
 
