@@ -12,7 +12,7 @@ const Register = () => {
   const [registerError, setRegisterError] = useState("");
   const [success, setSuccess] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const { NewUser, googleLogIn } = useContext(AuthContext);
+  const { createUser, googleLogIn } = useContext(AuthContext);
   const axiosSecure = useAxios();
   const navigate = useNavigate();
 
@@ -37,12 +37,11 @@ const Register = () => {
       return;
     }
 
-    NewUser(email, password, name, photoURL)
-      .then(() => {
-
+    createUser(email, password, name, photoURL)
+      .then((userCredential) => {
         const user = {
-          name: name,
-          email: email,
+          name: userCredential.user.displayName,
+          email: userCredential.user.email,
           role: 'user'
         }
 
@@ -69,7 +68,7 @@ const Register = () => {
             Swal.fire({
               icon: "error",
               title: "Oops !",
-              text: error.message,
+              text: error.massage,
             });
           })
       })
@@ -78,7 +77,7 @@ const Register = () => {
         Swal.fire({
           icon: "error",
           title: "Oops !",
-          text: error.message,
+          text: error.massage,
         });
       })
   };
@@ -116,7 +115,7 @@ const Register = () => {
             Swal.fire({
               icon: "error",
               title: "Oops !",
-              text: error.message,
+              text: error.massage,
             });
           })
       })
@@ -125,7 +124,7 @@ const Register = () => {
         Swal.fire({
           icon: "error",
           title: "Oops !",
-          text: error.message,
+          text: error.massage,
         });
       })
   };
