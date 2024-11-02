@@ -70,6 +70,16 @@ const User = () => {
     });
   };
 
+  const handleMakeSeller = (users) => {
+    axiosSecure.patch(`/users/seller/${users._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success("seller sucesss");
+      }
+    });
+  };
+
   let content;
   if (isLoading) {
     content = (
