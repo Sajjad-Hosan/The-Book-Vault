@@ -169,6 +169,30 @@ async function run() {
       res.send(result);
     });
 
+
+    // books update
+    app.patch("/booksupdate/:id", async (req, res) => {
+      const id = req.params.id;
+      const blog = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          ...blog,
+        },
+      };
+
+      try {
+        const result = await booksCollection.updateOne(filter, updateDoc);
+        if (result.matchedCount === 0) {
+          return res.status(404).send({ message: "books not found" });
+        }
+        res.send(result);
+      } catch (error) {
+        console.error("Error updating blog:", error);
+        res.status(500).send({ message: "Failed to update books", error });
+      }
+    });
+
     // Send a ping to confirm a successful connection
     //await client.db("admin").command({ ping: 1 });
     //console.log("Pinged your deployment. You successfully connected to MongoDB!");

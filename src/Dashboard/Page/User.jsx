@@ -155,20 +155,29 @@ const User = () => {
               <div className="mb-2">
                 <span className="font-bold">Email:</span> {user.email}
               </div>
-              <div className="flex gap-4">
-                <button className="text-blue-600 btn">Seller</button>
-                <button
-                  onClick={() => handleMakeAdmin(user)}
-                  className="text-blue-600 btn"
-                >
-                  make Admin
-                </button>
-                <button
-                  onClick={() => handleDelete(user)}
-                  className="text-red-600 btn"
-                >
-                  Delete
-                </button>
+              <div className="mb-2"><span className="font-bold">Role: </span>{user.role}</div>
+              <div className="grid gap-4">
+              {user.role === "seller" ? (
+                      <button
+                        onClick={() => handleMakeAdmin(user)}
+                        className="text-blue-600 btn"
+                      >
+                        Make a Admin
+                      </button>
+                    ) : user.role === "admin" || user.role === "user" ? (
+                      <button
+                        onClick={() => handleMakeSeller(user)}
+                        className="text-blue-600 btn"
+                      >
+                        Make a Seller
+                      </button>
+                    ) : null}
+                    <button
+                      onClick={() => handleDelete(user?._id)}
+                      className="text-red-600 btn"
+                    >
+                      Delete
+                    </button>
               </div>
             </div>
           ))}

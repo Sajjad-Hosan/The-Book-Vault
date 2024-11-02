@@ -18,94 +18,38 @@ const Booklist = () => {
     },
   });
 
-  const handleMakeApprove = (blogs) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, Approve!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure.patch(`/blog/aproved/${blogs._id}`).then((res) => {
-          if (res.data.modifiedCount > 0) {
-            Swal.fire({
-              title: "Approved!",
-              text: "Your book has been Approved.",
-              icon: "success",
-            });
-            refetch();
-            toast.success("blog Approved Sucesss");
-          }
-        });
-      }
+  const handleUpdateBooks = async (book) => {
+    const { value: formValues } = await Swal.fire({
+      title: "Update Book Details",
+      html: `
+        <input id="title" class="swal2-input" placeholder="Title" value="${book.title}">
+        <input id="author" class="swal2-input" placeholder="Author" value="${book.author}">
+        <input id="price" class="swal2-input" placeholder="Price" type="number" value="${book.price}">
+        <input id="genre" class="swal2-input" placeholder="Genre" value="${book.genre}">
+        <input id="status" class="swal2-input" placeholder="Status" value="${book.status}">
+      `,
+      focusConfirm: false,
+      preConfirm: () => {
+        return {
+          title: document.getElementById("title").value,
+          author: document.getElementById("author").value,
+          price: document.getElementById("price").value,
+          genre: document.getElementById("genre").value,
+          status: document.getElementById("status").value,
+        };
+      },
     });
-  };
 
-  //handle delete
-  const handleDelete = (id) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure
-          .delete(`/blog/${id}`)
-          .then((res) => {
-            if (res.data.deletedCount > 0) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your blog has been deleted.",
-                icon: "success",
-              });
-              refetch();
-            }
-          })
-          .catch((error) => {
-            console.error("Error deleting blog:", error);
-            Swal.fire({
-              title: "Error!",
-              text: "There was a problem deleting your blog.",
-              icon: "error",
-            });
-          });
+    if (formValues) {
+      try {
+        await axiosSecure.patch(`/booksupdate/${book._id}`, formValues);
+        Swal.fire("Success!", "Book details updated successfully.", "success");
+        refetch(); // Refresh the list to show updated details
+      } catch (error) {
+        Swal.fire("Error", "Failed to update book details", "error");
+        console.error("Error updating book:", error);
       }
-    });
-  };
-
-  //blogs Decline
-  const handleDecline = (blogs) => {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, decline it!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        axiosSecure.patch(`/blog/decline/${blogs._id}`).then((res) => {
-          console.log(blogs._id);
-          if (res.data.modifiedCount > 0) {
-            Swal.fire({
-              title: "Decline!",
-              text: "Your blog has been decline.",
-              icon: "success",
-            });
-            refetch();
-            toast.success("Blog Decline Success");
-          }
-        });
-      }
-    });
+    }
   };
 
   // Find email of self books
@@ -139,7 +83,8 @@ const Booklist = () => {
                   <span className="text-green-600 font-semibold">In Stock</span>
                 </td>
                 <td className="px-4 py-2 flex gap-5">
-                  <button className="text-blue-600 btn text-2xl">
+                  <button onClick={handleUpdatebooks}
+                      className="text-green-600 btn text-2xl">
                     <MdEditDocument />{" "}
                   </button>
                   <button className="text-red-600 btn text-2xl">
