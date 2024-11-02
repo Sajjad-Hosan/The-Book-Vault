@@ -107,7 +107,7 @@ const User = () => {
                   <td className="px-4 py-2">{user.email}</td>
                   <td className="px-4 py-2">{user.role}</td>
                   <td className="px-4 py-2 flex gap-5">
-                    {user.role === "user" ? (
+                    {user.role === "seller" ? (
                       <button
                         onClick={() => handleMakeAdmin(user)}
                         className="text-blue-600 btn"
