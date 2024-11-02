@@ -8,9 +8,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { useContext, useEffect } from "react";
 import { fetchusers } from "./GetApi/UserSlice";
 import { AuthContext } from "../Providers/AuthProviders";
+import { AiOutlineLogout } from "react-icons/ai";
+import Swal from "sweetalert2";
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut} = useContext(AuthContext);
   const dispatch = useDispatch();
 
   // Extracting users and state from the Redux store
@@ -23,7 +25,24 @@ const Dashboard = () => {
 
   // Find email of logged-in user from backend
   const loggedInUser = users.find((u) => u.email === user?.email);
-  // console.log(loggedInUser);
+
+  const handleLogOut = () => {
+    logOut()
+        .then(() => {
+            Swal.fire({
+                title: "Logged out!",
+                text: "You've successfully logged out.",
+                icon: "success"
+            });
+        })
+        .catch(error => {
+            Swal.fire({
+                icon: "error",
+                title: "Oops !",
+                text: error.massage,
+            });
+        })
+}
 
   return (
     <>
@@ -37,7 +56,6 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="flex">
-
         {/* Sidebar for Large Screens */}
 
         <div className="w-80 min-h-screen font-bold bg-gray-200 hidden lg:block">
@@ -57,7 +75,8 @@ const Dashboard = () => {
             <li>
               <NavLink
                 className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
+                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                    isActive ? "bg-red-600 text-white" : ""
                   }`
                 }
                 to="/dashboard/profile"
@@ -68,36 +87,56 @@ const Dashboard = () => {
             </li>
 
             <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
-                  }`
-                }
-                to="order"
-              >
-                <CiShop />
-                Orders
-              </NavLink>
+              {(loggedInUser?.role === "seller" ||
+                loggedInUser?.role === "admin") && (
+                  <NavLink
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                        isActive ? "bg-red-600 text-white" : ""
+                      }`
+                    }
+                    to="order"
+                  >
+                    <CiShop />
+                    Orders
+                  </NavLink>
+                )}
             </li>
 
             <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
-                  }`
-                }
-                to="/dashboard/bookslist"
-              >
-                <MdArticle /> Book Lists
-              </NavLink>
+              {loggedInUser?.role === "admin" ? (
+                <NavLink
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                      isActive ? "bg-red-600 text-white" : ""
+                    }`
+                  }
+                  to="/dashboard/Allbookslist"
+                >
+                  <MdArticle /> All Book Lists
+                </NavLink>
+              ) : (
+                loggedInUser?.role === "seller" && (
+                  <NavLink
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                        isActive ? "bg-red-600 text-white" : ""
+                      }`
+                    }
+                    to="/dashboard/bookslist"
+                  >
+                    <MdArticle /> Book Lists
+                  </NavLink>
+                )
+              )}
             </li>
 
             {loggedInUser?.role === "admin" && (
-
               <li>
                 <NavLink
                   className={({ isActive }) =>
-                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
+                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                      isActive ? "bg-red-600 text-white" : ""
                     }`
                   }
                   to="/dashboard/users"
@@ -108,36 +147,45 @@ const Dashboard = () => {
               </li>
             )}
             <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
-                  }`
-                }
-                to="/dashboard/addbooks"
-              >
-                <MdOutlinePublishedWithChanges />
-                Add Books
-              </NavLink>
+              {(loggedInUser?.role === "seller" ||
+                loggedInUser?.role === "admin") && (
+                  <NavLink
+                    className={({ isActive }) =>
+                      `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                        isActive ? "bg-red-600 text-white" : ""
+                      }`
+                    }
+                    to="/dashboard/addbooks"
+                  >
+                    <MdOutlinePublishedWithChanges />
+                    Add Books
+                  </NavLink>
+                )}
             </li>
 
             <li>
-              <NavLink
-                className={({ isActive }) =>
-                  `flex items-center gap-2 rounded-md p-3 text-xl text-center ${isActive ? "bg-red-600 text-white" : ""
-                  }`
-                }
-                to="/dashboard/charts"
-              >
-                <FaChartSimple />
-                Charts
-              </NavLink>
+              {(loggedInUser?.role === "seller" ||
+                loggedInUser?.role === "admin") && (
+                <NavLink
+                  className={({ isActive }) =>
+                    `flex items-center gap-2 rounded-md p-3 text-xl text-center ${
+                      isActive ? "bg-red-600 text-white" : ""
+                    }`
+                  }
+                  to="/dashboard/charts"
+                >
+                  <FaChartSimple />
+                  Charts
+                </NavLink>
+              )}
             </li>
             <div className="divider"></div>
             <NavLink
               className="flex gap-2 text-center text-red-600 text-2xl items-center"
               to="/"
             >
-              <button className="mt-6 px-6 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
+              <button className="mt-6 px-6 py-3 flex items-center gap-2 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
+                <FaHome />
                 Homepage
               </button>
             </NavLink>
@@ -145,8 +193,9 @@ const Dashboard = () => {
               className="flex gap-2 text-center text-red-600 text-2xl items-center"
               to="/products"
             >
-              <button className="mt-6 px-6 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
-                Products Page
+              <button onClick={handleLogOut} className="mt-6 px-6 py-3 bg-red-600 flex items-center gap-2 text-white font-semibold rounded-md hover:bg-red-600 transition">
+                <AiOutlineLogout />
+                Logout
               </button>
             </NavLink>
           </ul>
@@ -180,12 +229,11 @@ const Dashboard = () => {
               className="menu menu-sm dropdown-content bg-gray-200 rounded-box z-[1] mt-3 w-52 p-2 shadow"
             >
               <li>
-              <NavLink to="/dashboard/profile"
-              >
-                <FaCircleUser />
-                Profile
-              </NavLink>
-            </li>
+                <NavLink to="/dashboard/profile">
+                  <FaCircleUser />
+                  Profile
+                </NavLink>
+              </li>
 
               <li>
                 <NavLink to="order">
@@ -193,9 +241,15 @@ const Dashboard = () => {
                 </NavLink>
               </li>
               <li>
-                <NavLink to="/dashboard/bookslist">
-                  <MdArticle /> Book Lists
-                </NavLink>
+                {loggedInUser?.role === "admin" ? (
+                  <NavLink to="/dashboard/Allbookslist">
+                    <MdArticle /> All Book Lists
+                  </NavLink>
+                ) : (
+                  <NavLink to="/dashboard/bookslist">
+                    <MdArticle /> Book Lists
+                  </NavLink>
+                )}
               </li>
               {loggedInUser?.role === "admin" && (
                 <li>
@@ -227,8 +281,8 @@ const Dashboard = () => {
                 className="flex gap-2 text-center text-red-600 text-xl items-center"
                 to="/"
               >
-                <button className="mt-6 px-4 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
-                  Products Page
+                <button to='/' onClick={handleLogOut} className="mt-6 px-4 py-3 bg-red-600 text-white font-semibold rounded-md hover:bg-red-600 transition">
+                  Logout
                 </button>
               </NavLink>
             </ul>
@@ -236,8 +290,8 @@ const Dashboard = () => {
         </div>
 
         {/* Main Content Area */}
-        <div className="flex-1">
-          <Outlet />
+        <div className="flex-1 m-6 rounded-lg border bg-gray-100">
+          <Outlet className=""></Outlet>
         </div>
       </div>
       <ChaportChat></ChaportChat>

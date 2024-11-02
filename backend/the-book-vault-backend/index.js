@@ -82,10 +82,151 @@ async function run() {
       }
     });
 
+    //Get users 
+    app.get('/users', async (req, res) => {
+      const result = await usersCollection.find().toArray();
+      res.send(result);
+    });
+
+    //user profile update
+    app.patch("/user/update/:id", async (req, res) => {
+      const id = req.params.id;
+      const user = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          ...user,
+        },
+      };
+
+      try {
+        const result = await usersCollection.updateOne(filter, updateDoc);
+        if (result.matchedCount === 0) {
+          return res.status(404).send({ message: "user not found" });
+        }
+        res.send(result);
+      } catch (error) {
+        console.error("Error updating blog:", error);
+        res.status(500).send({ message: "Failed to update user", error });
+      }
+    });
+
     app.post('/add_to_cart', async (req, res) => {
       const add = req.body;
       const result = await cartCollection.insertOne(add);
       res.send(result);
+    });
+
+    //add to books
+    app.post("/addbook", async (req, res) => {
+      const newbook = req.body;
+      const result = await booksCollection.insertOne(newbook);
+      res.send(result);
+    });
+
+    //Make a admin
+    app.patch("/users/admin/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          role: "admin",
+        },
+      };
+      const result = await usersCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+    //make user seller
+    app.patch("/users/seller/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          role: "seller",
+        },
+      };
+      const result = await usersCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+    //make user
+    app.patch("/users/user/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          role: "user",
+        },
+      };
+      const result = await usersCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+    // make admin and seller delete api
+    app.delete("/users/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await usersCollection.deleteOne(query);
+      res.send(result);
+    });
+
+    // delete a Books
+    app.delete("/books/:id", async (req, res) => {
+      const id = req.params.id;
+      const query = { _id: new ObjectId(id) };
+      const result = await booksCollection.deleteOne(query);
+      res.send(result);
+    });
+
+    // make Books Approved api
+    app.patch("/books/approved/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          status: "approve",
+        },
+      };
+      const result = await booksCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+    // make books Decline api
+    app.patch("/books/decline/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          status: "Decline",
+        },
+      };
+      const result = await booksCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+
+    // books update
+    app.patch("/booksupdate/:id", async (req, res) => {
+      const id = req.params.id;
+      const books = req.body;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          ...books,
+        },
+      };
+
+      try {
+        const result = await booksCollection.updateOne(filter, updateDoc);
+        if (result.matchedCount === 0) {
+          return res.status(404).send({ message: "books not found" });
+        }
+        res.send(result);
+      } catch (error) {
+        console.error("Error updating books:", error);
+        res.status(500).send({ message: "Failed to update books", error });
+      }
     });
 
     // Send a ping to confirm a successful connection

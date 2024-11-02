@@ -5,7 +5,7 @@ const Delevary = () => {
     <div>
       <table className="min-w-full text-left table-auto hidden lg:block">
         <thead>
-          <tr className="border-b">
+          <tr className="border-b bg-gray-200">
             <th className="px-4 py-2">Order ID</th>
             <th className="px-4 py-2">Customer Name</th>
             <th className="px-4 py-2">Order Date</th>
