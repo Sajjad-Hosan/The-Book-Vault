@@ -114,13 +114,26 @@ async function run() {
       res.send(result);
     });
 
-    //make user selle
+    //make user seller
     app.patch("/users/seller/:id", async (req, res) => {
       const id = req.params.id;
       const filter = { _id: new ObjectId(id) };
       const updateDoc = {
         $set: {
           role: "seller",
+        },
+      };
+      const result = await usersCollection.updateOne(filter, updateDoc);
+      res.send(result);
+    });
+
+    //make user
+    app.patch("/users/user/:id", async (req, res) => {
+      const id = req.params.id;
+      const filter = { _id: new ObjectId(id) };
+      const updateDoc = {
+        $set: {
+          role: "user",
         },
       };
       const result = await usersCollection.updateOne(filter, updateDoc);

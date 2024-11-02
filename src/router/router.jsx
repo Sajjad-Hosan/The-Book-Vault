@@ -65,7 +65,7 @@ const router = createBrowserRouter([
       },
       {
         path:"allbookslist",
-        element:<AllBooklist></AllBooklist>
+        element:<Privatrout><AllBooklist></AllBooklist></Privatrout>
 
       },
       {

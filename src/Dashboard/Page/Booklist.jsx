@@ -18,24 +18,64 @@ const Booklist = () => {
     },
   });
 
+  //books update
   const handleUpdateBooks = async (book) => {
     const { value: formValues } = await Swal.fire({
       title: "Update Book Details",
       html: `
-        <input id="title" class="swal2-input" placeholder="Title" value="${book.title}">
-        <input id="author" class="swal2-input" placeholder="Author" value="${book.author}">
-        <input id="price" class="swal2-input" placeholder="Price" type="number" value="${book.price}">
-        <input id="genre" class="swal2-input" placeholder="Genre" value="${book.genre}">
-        <input id="status" class="swal2-input" placeholder="Status" value="${book.status}">
+        <div style="text-align: left;">
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Title</h2>
+          <input id="title" class="swal2-input" placeholder="Title" value="${book.title}" style="width: 100%;">
+  
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Short Description</h2>
+          <input id="short_description" class="swal2-input" placeholder="Short Description" value="${book.short_description}" style="width: 100%;">
+  
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Publisher</h2>
+          <input id="publisher" class="swal2-input" placeholder="Publisher" value="${book.publisher}" style="width: 100%;">
+  
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Cover Picture URL</h2>
+          <input id="cover_pic" class="swal2-input" placeholder="Cover Picture URL" value="${book.cover_pic}" style="width: 100%;">
+  
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Author</h2>
+          <input id="author" class="swal2-input" placeholder="Author" value="${book.author}" style="width: 100%;">
+  
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Price</h2>
+          <input id="price" class="swal2-input" placeholder="Price" type="number" value="${book.price}" style="width: 100%;">
+  
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Publishing Year</h2>
+          <input id="publishing_year" class="swal2-input" placeholder="Publishing Year" value="${book.publishing_year}" style="width: 100%;">
+  
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Email</h2>
+          <input id="email" class="swal2-input" placeholder="Email" value="${book.email}" style="width: 100%;">
+  
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Status</h2>
+          <input id="status" class="swal2-input" placeholder="Status" value="${book.status}" style="width: 100%;">
+  
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Username</h2>
+          <input id="username" class="swal2-input" placeholder="Username" value="${book.username}" style="width: 100%;">
+  
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Rating</h2>
+          <input id="rating" class="swal2-input" placeholder="Rating" type="number" step="0.1" value="${book.rating}" style="width: 100%;">
+  
+          <h2 style="font-size: 1.25rem; margin: 0.5rem 0;">Genre</h2>
+          <input id="genre" class="swal2-input" placeholder="Genre" value="${book.genre}" style="width: 100%;">
+        </div>
       `,
       focusConfirm: false,
       preConfirm: () => {
         return {
           title: document.getElementById("title").value,
+          short_description: document.getElementById("short_description").value,
+          publisher: document.getElementById("publisher").value,
+          cover_pic: document.getElementById("cover_pic").value,
           author: document.getElementById("author").value,
           price: document.getElementById("price").value,
-          genre: document.getElementById("genre").value,
+          publishing_year: document.getElementById("publishing_year").value,
+          email: document.getElementById("email").value,
           status: document.getElementById("status").value,
+          username: document.getElementById("username").value,
+          rating: document.getElementById("rating").value,
+          genre: document.getElementById("genre").value,
         };
       },
     });
@@ -83,8 +123,10 @@ const Booklist = () => {
                   <span className="text-green-600 font-semibold">In Stock</span>
                 </td>
                 <td className="px-4 py-2 flex gap-5">
-                  <button onClick={handleUpdatebooks}
-                      className="text-green-600 btn text-2xl">
+                  <button
+                    onClick={() => handleUpdateBooks(data)}
+                    className="text-blue-600 btn text-2xl"
+                  >
                     <MdEditDocument />{" "}
                   </button>
                   <button className="text-red-600 btn text-2xl">
@@ -114,74 +156,71 @@ const Booklist = () => {
 
       {/* Grid for smaller screens */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:hidden">
-        {/* Book 1 */}
-        <div className="border p-4 rounded-lg shadow-md">
-          <div className="mb-2">
-            <span className="font-bold">Book Title:</span> The Great Gatsby
+        {allBooks?.map((data) => (
+          <div key={data._id} className="border p-4 rounded-lg shadow-md">
+            <div className="mb-2">
+              <span className="font-bold">Book Title:</span> {data?.title}
+            </div>
+            <div className="mb-2">
+              <span className="font-bold">Author:</span> {data?.author}
+            </div>
+            <div className="mb-2">
+              <span className="font-bold">Category:</span>{" "}
+              {data?.category || "Classic"}
+            </div>
+            <div className="mb-2">
+              <span className="font-bold">Price:</span> ${data?.price}
+            </div>
+            <div className="mb-2">
+              <span
+                className={
+                  data?.inStock
+                    ? "text-green-600 font-semibold"
+                    : "text-red-600 font-semibold"
+                }
+              >
+                {data?.inStock ? "In Stock" : "Out of Stock"}
+              </span>
+            </div>
+            <div className="grid gap-4">
+              <button
+                onClick={() => handleUpdateBooks(data)}
+                className="text-blue-600 btn text-2xl"
+              >
+                <MdEditDocument />{" "}
+              </button>
+              <button
+                className="text-blue-600 btn"
+                onClick={() => {
+                  /* Edit functionality */
+                }}
+              >
+                Edit
+              </button>
+              <button
+                onClick={() => handleDelete(data?._id)}
+                className="text-red-600 btn"
+              >
+                Delete
+              </button>
+              {data?.status === "pending" || data?.status === "Decline" ? (
+                <button
+                  onClick={() => handleApprove(data)}
+                  className="text-green-600 btn"
+                >
+                  Approve
+                </button>
+              ) : data?.status === "approve" ? (
+                <button
+                  onClick={() => handleDecline(data)}
+                  className="text-red-600 btn"
+                >
+                  Decline
+                </button>
+              ) : null}
+            </div>
           </div>
-          <div className="mb-2">
-            <span className="font-bold">Author:</span> F. Scott Fitzgerald
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Category:</span> Classic
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Price:</span> $10.99
-          </div>
-          <div className="mb-2">
-            <span className="text-green-600 font-semibold">In Stock</span>
-          </div>
-          <div className="flex gap-4">
-            <button className="text-blue-600 btn">Edit</button>
-            <button className="text-red-600 btn">Delete</button>
-          </div>
-        </div>
-
-        {/* Book 2 */}
-        <div className="border p-4 rounded-lg shadow-md">
-          <div className="mb-2">
-            <span className="font-bold">Book Title:</span> 1984
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Author:</span> George Orwell
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Category:</span> Dystopian
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Price:</span> $8.99
-          </div>
-          <div className="mb-2">
-            <span className="text-red-600 font-semibold">Out of Stock</span>
-          </div>
-          <div className="flex gap-4">
-            <button className="text-blue-600 btn">Edit</button>
-            <button className="text-red-600 btn">Delete</button>
-          </div>
-        </div>
-
-        {/* Book 3 */}
-        <div className="border p-4 rounded-lg shadow-md">
-          <div className="mb-2">
-            <span className="font-bold">Book Title:</span> To Kill a Mockingbird
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Author:</span> Harper Lee
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Category:</span> Fiction
-          </div>
-          <div className="mb-2">
-            <span className="font-bold">Price:</span> $12.50
-          </div>
-          <div className="mb-2">
-            <span className="text-green-600 font-semibold">In Stock</span>
-          </div>
-          <div className="flex gap-4">
-            <button className="text-blue-600 btn">Edit</button>
-            <button className="text-red-600 btn">Delete</button>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

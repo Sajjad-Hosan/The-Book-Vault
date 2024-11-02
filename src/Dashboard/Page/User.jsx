@@ -80,6 +80,16 @@ const User = () => {
     });
   };
 
+  const handleMakeUser = (users) => {
+    axiosSecure.patch(`/users/user/${users._id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.modifiedCount > 0) {
+        refetch();
+        toast.success("user sucesss");
+      }
+    });
+  };
+
   let content;
   if (isLoading) {
     content = (
@@ -122,14 +132,21 @@ const User = () => {
                         onClick={() => handleMakeAdmin(user)}
                         className="text-blue-600 btn"
                       >
-                        Make a Admin
+                        Make Admin
                       </button>
-                    ) : user.role === "admin" || user.role === "user" ? (
+                    ) : user.role === "admin" ? (
+                      <button
+                        onClick={() => handleMakeUser(user)}
+                        className="text-blue-600 btn"
+                      >
+                        Make a User
+                      </button>
+                    ) : user.role === "user" ? (
                       <button
                         onClick={() => handleMakeSeller(user)}
                         className="text-blue-600 btn"
                       >
-                        Make a Seller
+                        Make Seller
                       </button>
                     ) : null}
                     <button
@@ -155,29 +172,32 @@ const User = () => {
               <div className="mb-2">
                 <span className="font-bold">Email:</span> {user.email}
               </div>
-              <div className="mb-2"><span className="font-bold">Role: </span>{user.role}</div>
+              <div className="mb-2">
+                <span className="font-bold">Role: </span>
+                {user.role}
+              </div>
               <div className="grid gap-4">
-              {user.role === "seller" ? (
-                      <button
-                        onClick={() => handleMakeAdmin(user)}
-                        className="text-blue-600 btn"
-                      >
-                        Make a Admin
-                      </button>
-                    ) : user.role === "admin" || user.role === "user" ? (
-                      <button
-                        onClick={() => handleMakeSeller(user)}
-                        className="text-blue-600 btn"
-                      >
-                        Make a Seller
-                      </button>
-                    ) : null}
-                    <button
-                      onClick={() => handleDelete(user?._id)}
-                      className="text-red-600 btn"
-                    >
-                      Delete
-                    </button>
+                {user.role === "seller" ? (
+                  <button
+                    onClick={() => handleMakeAdmin(user)}
+                    className="text-blue-600 btn"
+                  >
+                    Make a Admin
+                  </button>
+                ) : user.role === "admin" || user.role === "user" ? (
+                  <button
+                    onClick={() => handleMakeSeller(user)}
+                    className="text-blue-600 btn"
+                  >
+                    Make a Seller
+                  </button>
+                ) : null}
+                <button
+                  onClick={() => handleDelete(user?._id)}
+                  className="text-red-600 btn"
+                >
+                  Delete
+                </button>
               </div>
             </div>
           ))}

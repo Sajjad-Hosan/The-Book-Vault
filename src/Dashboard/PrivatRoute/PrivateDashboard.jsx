@@ -28,7 +28,7 @@ const PrivateDashboard = ({ children }) => {
     ); // or a spinner
   }
 
-  if (adminUser?.role === "admin") {
+  if (adminUser?.role === "admin" || adminUser?.role ==="seller" || adminUser?.role ==="user") {
     return children;
   } else {
     return <Navigate to="/login" state={{ from: location }} />;
