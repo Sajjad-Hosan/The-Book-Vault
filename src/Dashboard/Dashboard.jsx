@@ -4,27 +4,37 @@ import { FaChartSimple, FaCircleUser } from "react-icons/fa6";
 import { MdArticle, MdOutlinePublishedWithChanges } from "react-icons/md";
 import { NavLink, Outlet } from "react-router-dom";
 import ChaportChat from "./ChaportChat";
-import { useDispatch, useSelector } from "react-redux";
 import { useContext, useEffect } from "react";
-import { fetchusers } from "./GetApi/UserSlice";
 import { AuthContext } from "../Providers/AuthProviders";
 import { AiOutlineLogout } from "react-icons/ai";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
+import useAxios from "../Hooks/useAxios";
 
 const Dashboard = () => {
   const { user, logOut} = useContext(AuthContext);
-  const dispatch = useDispatch();
+  const axiosSecure = useAxios();
+  console.log(user);
 
-  // Extracting users and state from the Redux store
-  const { users } = useSelector((state) => state.users);
-
-  // Fetch users when the component mounts
-  useEffect(() => {
-    dispatch(fetchusers());
-  }, [dispatch]);
+  // Extracting users and state from 
+  const {
+    data: users = [],
+    refetch,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
+  });
+  console.log(users);
 
   // Find email of logged-in user from backend
   const loggedInUser = users.find((u) => u.email === user?.email);
+  console.log(loggedInUser);
 
   const handleLogOut = () => {
     logOut()

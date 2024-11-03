@@ -8,6 +8,7 @@ const PrivateDashboard = ({ children }) => {
   const { user, loading } = useContext(AuthContext);
   const location = useLocation();
   const axiosSecure = useAxios();
+  
   const { data: users = [], refetch } = useQuery({
     queryKey: ["users"],
     queryFn: async () => {
@@ -16,7 +17,8 @@ const PrivateDashboard = ({ children }) => {
     },
   });
 
-  const adminUser = users.find((u) => u.email === user?.email);
+  const adminUser = users.filter((u) => u.email === user?.email);
+  console.log(adminUser)
 
   if (loading) {
     return (
