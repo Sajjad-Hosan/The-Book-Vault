@@ -2,6 +2,7 @@
 import Slider from 'react-slick'; // Import react-slick slider
 import 'slick-carousel/slick/slick.css'; // Slick carousel CSS
 import 'slick-carousel/slick/slick-theme.css'; // Slick carousel theme
+import { Link } from 'react-router-dom';
 
 const SliderComponent = () => {
   // Slider settings for slick
@@ -27,9 +28,9 @@ const SliderComponent = () => {
             className="w-full max-h-96 object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">
+            <Link to={'/products'} className=" bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">
               Shop Now
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -41,9 +42,9 @@ const SliderComponent = () => {
             className="w-full max-h-96 object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">
+            <Link to={'/products'} className=" bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">
               Shop Now
-            </button>
+            </Link>
           </div>
         </div>
 
@@ -55,9 +56,9 @@ const SliderComponent = () => {
             className="w-full max-h-96 object-cover"
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <button className="bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">
+            <Link to={'/products'} className=" bg-red-500 text-white px-6 py-3 rounded-full text-lg hover:bg-red-600 transition duration-300">
               Shop Now
-            </button>
+            </Link>
           </div>
         </div>
       </Slider>
