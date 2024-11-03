@@ -25,23 +25,23 @@ const Profile = () => {
     },
   });
 
-    const handleLogOut = () => {
-        logOut()
-            .then(() => {
-                Swal.fire({
-                    title: "Logged out!",
-                    text: "You've successfully logged out.",
-                    icon: "success"
-                });
-            })
-            .catch(error => {
-                Swal.fire({
-                    icon: "error",
-                    title: "Oops !",
-                    text: error.message,
-                });
-            })
-    }
+    // const handleLogOut = () => {
+    //     logOut()
+    //         .then(() => {
+    //             Swal.fire({
+    //                 title: "Logged out!",
+    //                 text: "You've successfully logged out.",
+    //                 icon: "success"
+    //             });
+    //         })
+    //         .catch(error => {
+    //             Swal.fire({
+    //                 icon: "error",
+    //                 title: "Oops !",
+    //                 text: error.message,
+    //             });
+    //         })
+    // }
 
     const handleUserUpdate = async () => {
         const { value: formValues } = await Swal.fire({
@@ -81,7 +81,7 @@ const Profile = () => {
 
     return (
         <div className=" w-2/3 mx-auto">
-            <div className="card bg-white p-5 shadow-xl my-10">
+            <div className="card bg-white p-5 shadow-xl my-20">
                 {
                     user.photoURL ? 
                     <figure>
@@ -100,7 +100,7 @@ const Profile = () => {
                     <p>{user.email}</p>
                     <div className="card-actions justify-end">
                         <Link onClick={()=>handleUserUpdate(users?._id)} className="btn bg-[#ef4444] text-white">Update Profile</Link>
-                        <Link to='/' onClick={handleLogOut} className=" btn btn-error text-white text-base font-semibold">Log Out</Link>
+                        {/* <Link to='/' onClick={handleLogOut} className=" btn btn-error text-white text-base font-semibold">Log Out</Link> */}
                     </div>
                 </div>
             </div>
