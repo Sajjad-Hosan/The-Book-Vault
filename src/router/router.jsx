@@ -17,10 +17,10 @@ import Order from "../Dashboard/Page/Order";
 import Profile from "../Dashboard/UserDashboard/Profile/Profile";
 import Wishlist from "../Dashboard/UserDashboard/Wishlist/Wishlist";
 import PrivateRoutes from "./PrivateRoutes";
-import Privatrout from "../Dashboard/PrivatRoute/privatrout";
 import AllBooklist from "../Dashboard/Page/AllBooklist";
 import PrivateDashboard from "../Dashboard/PrivatRoute/PrivateDashboard";
 import PrivateSeller from "../Dashboard/PrivatRoute/PrivateSeller";
+import Privatrout from "../Dashboard/PrivatRoute/Privatrout";
 
 const router = createBrowserRouter([
   {
@@ -53,7 +53,7 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <PrivateDashboard><Dashboard></Dashboard></PrivateDashboard>,
+    element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
     errorElement: <Error></Error>,
     children: [
       {

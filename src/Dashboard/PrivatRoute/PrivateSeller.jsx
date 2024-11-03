@@ -2,21 +2,29 @@ import React, { useContext, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthContext } from "../../Providers/AuthProviders";
 import { fetchusers } from "../GetApi/UserSlice";
+import useAxios from "../../Hooks/useAxios";
+import { useQuery } from "@tanstack/react-query";
 
 const PrivateSeller = ({ children }) => {
   const { user, loading: authLoading } = useContext(AuthContext);
-  const dispatch = useDispatch();
-  
-  // Extracting users and loading state from the Redux store
-  const { users, loading: usersLoading, error } = useSelector((state) => state.users);  
-
-  // Fetch users when the component mounts
-  useEffect(() => {
-    dispatch(fetchusers());
-  }, [dispatch]);
+  const axiosSecure = useAxios();
+  const {
+    data: users = [],
+    refetch,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["users"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/users");
+      return res.data;
+    },
+  });
+  console.log(users);
 
   // Handle loading and error states
-  if (authLoading || usersLoading) {
+  if (authLoading) {
     return <div>Loading...</div>; // Show a loading message or spinner
   }
 
