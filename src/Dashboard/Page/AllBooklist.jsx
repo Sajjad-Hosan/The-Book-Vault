@@ -3,11 +3,11 @@ import { MdEditDocument } from "react-icons/md";
 import { MdDeleteForever } from "react-icons/md";
 import useAxios from "../../Hooks/useAxios";
 import { useQuery } from "@tanstack/react-query";
-import { confirmPasswordReset } from "firebase/auth";
 import { AuthContext } from "../../Providers/AuthProviders";
 import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 
-const Booklist = () => {
+const AllBooklist = () => {
   const { user } = useContext(AuthContext);
   const axiosSecure = useAxios();
 
@@ -51,6 +51,61 @@ const Booklist = () => {
               icon: "error",
             });
           });
+      }
+    });
+  };
+
+  //books Decline
+  const handleDecline = (blogs) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to Decline this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, decline it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/books/decline/${blogs._id}`).then((res) => {
+          console.log(blogs._id);
+          if (res.data.modifiedCount > 0) {
+            Swal.fire({
+              title: "Decline!",
+              text: "Your Books has been decline.",
+              icon: "success",
+            });
+            refetch();
+          }
+        });
+      }
+    });
+  };
+
+  //books Approve
+  const handleApprove = (books) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, Approved it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axiosSecure.patch(`/books/approved/${books._id}`).then((res) => {
+          console.log(books._id);
+          if (res.data.modifiedCount > 0) {
+            Swal.fire({
+              title: "Approved",
+              text: "Your books has been Approved.",
+              icon: "success",
+            });
+            refetch();
+            toast.success("Books Approved Success");
+          }
+        });
       }
     });
   };
@@ -117,8 +172,6 @@ const Booklist = () => {
       },
     });
 
-    
-
     if (formValues) {
       try {
         await axiosSecure.patch(`/booksupdate/${book._id}`, formValues);
@@ -130,10 +183,6 @@ const Booklist = () => {
       }
     }
   };
-
-  // Find email of self books
-  const booksuser = allBooks.filter((b) => b.email === user?.email);
-  console.log(booksuser);
 
   return (
     <div className="p-6">
@@ -148,11 +197,12 @@ const Booklist = () => {
               <th className="px-4 py-2">Price</th>
               <th className="px-4 py-2">Stock Status</th>
               <th className="px-4 py-2">Actions</th>
+              <th className="px-4 py-2">Status</th>
             </tr>
           </thead>
           <tbody>
             {/* Row 1 */}
-            {booksuser?.map((data, index) => (
+            {allBooks?.map((data, index) => (
               <tr className="border-b">
                 <td className="px-4 py-2">{data?.title}</td>
                 <td className="px-4 py-2">{data?.author}</td>
@@ -170,10 +220,27 @@ const Booklist = () => {
                   </button>
                   <button
                     onClick={() => handleDelete(data?._id)}
-                    className="text-red-600 btn"
+                    className="text-red-600 btn text-2xl"
                   >
-                    Delete
+                    <MdDeleteForever />{" "}
                   </button>
+                </td>
+                <td>
+                  {data?.status === "pending" || data?.status === "Decline" ? (
+                    <button
+                      onClick={() => handleApprove(data)}
+                      className="text-green-600 btn text-xl"
+                    >
+                      Approve
+                    </button>
+                  ) : data?.status === "approve" ? (
+                    <button
+                      onClick={() => handleDecline(data)}
+                      className="text-red-600 btn text-2xl"
+                    >
+                      Decline
+                    </button>
+                  ) : null}
                 </td>
               </tr>
             ))}
@@ -183,7 +250,7 @@ const Booklist = () => {
 
       {/* Grid for smaller screens */}
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:hidden">
-        {booksuser?.map((data) => (
+        {allBooks?.map((data) => (
           <div key={data._id} className="border p-4 rounded-lg shadow-md">
             <div className="mb-2">
               <span className="font-bold">Book Title:</span> {data?.title}
@@ -222,6 +289,21 @@ const Booklist = () => {
               >
                 Delete
               </button>
+              {data?.status === "pending" || data?.status === "Decline" ? (
+                <button
+                  onClick={() => handleApprove(data)}
+                  className="text-green-600 btn"
+                >
+                  Approve
+                </button>
+              ) : data?.status === "approve" ? (
+                <button
+                  onClick={() => handleDecline(data)}
+                  className="text-red-600 btn"
+                >
+                  Decline
+                </button>
+              ) : null}
             </div>
           </div>
         ))}
@@ -230,4 +312,4 @@ const Booklist = () => {
   );
 };
 
-export default Booklist;
+export default AllBooklist;

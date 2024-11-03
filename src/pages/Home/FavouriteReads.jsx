@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
 
 // BookCard component for left and right sections
 const BookCard = ({ book, isSmall }) => (
@@ -73,9 +74,9 @@ const FavouriteReads = () => {
     <div className="container mx-auto p-8">
       <div className="flex justify-between items-center mb-8">
         <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Our Favourite Reads</h2>
-        <button className="px-6 py-2 bg-red-500 text-white rounded-full">
+        <Link to={'/products'} className="px-6 py-2 bg-red-500 text-white rounded-full">
           View All
-        </button>
+        </Link>
       </div>
 
       <div className="flex flex-col lg:flex-row gap-8">
